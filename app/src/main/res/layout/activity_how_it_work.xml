@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"  tools:context="com.careager.HowItWork">
+
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:weightSum="10"
+       android:orientation="vertical"
+       >
+       <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="0dp"
+           android:layout_weight="6.5"
+           android:background="@drawable/hiw_bg"
+           ></LinearLayout>
+
+       <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="0dp"
+           android:layout_weight="3.5"
+           android:orientation="vertical"
+           android:gravity="center"
+           android:background="@color/whiteColor"
+           >
+           <RadioGroup
+               android:id="@+id/hiw_radio_group"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:orientation="horizontal"
+               >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="I am"
+                   android:paddingRight="10dp"
+                   android:textColor="@color/blackColor"
+                   />
+               <RadioButton
+                   android:id="@+id/hit_dealer"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Business Owner"
+                   android:checked="true"
+                   android:textColor="@color/blackColor"
+                   />
+               <RadioButton
+                   android:id="@+id/hit_user"
+                   android:textColor="@color/blackColor"
+                   android:layout_marginLeft="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="User"
+                   />
+
+
+           </RadioGroup>
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_marginTop="20dp"
+               android:layout_height="wrap_content">
+
+               <Button
+                   android:id="@+id/hiw_signup"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:minHeight="@dimen/button_min_height"
+                   android:text="Sign up"
+                   android:textColor="@color/buttonTextColor"
+                   android:background="@drawable/customized_button"
+                   />
+               <Button
+                   android:id="@+id/hiw_signin"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:minHeight="@dimen/button_min_height"
+                   android:text="Sign in"
+                   android:layout_marginLeft="20dp"
+                   android:textColor="@color/buttonTextColor"
+                   android:background="@drawable/customized_button"
+                   />
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="OR"
+               android:textStyle="bold"
+               android:layout_marginTop="10dp"
+               />
+           <Button
+               android:id="@+id/hiw_skip"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:minHeight="@dimen/button_min_height"
+               android:text="Skip"
+               android:layout_marginTop="10dp"
+               android:textColor="@color/buttonTextColor"
+               android:background="@drawable/customized_button"
+               />
+           </LinearLayout>
+       </LinearLayout>
+
+
+</RelativeLayout>

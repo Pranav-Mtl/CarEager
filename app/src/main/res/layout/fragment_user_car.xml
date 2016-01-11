@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.careager.UserCarFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:id="@+id/top_bg"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/ic_user_top"
+    ></LinearLayout>
+<LinearLayout
+    android:id="@+id/search_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_below="@id/top_bg"
+    android:gravity="center"
+    >
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Zip, model, make"
+        android:paddingLeft="5dp"
+        android:background="@drawable/ic_autocomplete_bg"
+        />
+    <Button
+        android:id="@+id/user_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/customized_button"
+        android:textColor="@color/buttonTextColor"
+        android:minHeight="@dimen/button_min_height"
+        />
+</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/car_list"
+            android:layout_below="@id/search_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+       <!-- <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_mob"
+            app:backgroundTint="@color/blackColor"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            />-->
+    </RelativeLayout>
+</FrameLayout>

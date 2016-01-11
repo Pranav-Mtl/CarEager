@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:textColorHint">@color/textHintColor</item>
+        <item name="android:textColorSecondary">@color/textSecondaryColor</item>
+        <item name="colorControlNormal">@color/blackColor</item>
+        <item name="colorControlActivated">@color/redColor</item>
+        <item name="android:actionMenuTextColor">@color/blackColor</item>
+        <item name="colorControlHighlight">@color/redColor</item>
+        <item name="android:dropDownListViewStyle">@style/PopupMenuListView</item>
+        <item name="dropDownListViewStyle">@style/PopupMenuListView</item>
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+    </style>
+
+    <style name="ActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@color/blackColor</item>
+        <item name="android:displayOptions"></item>
+    </style>
+    <style name="PopupMenuListView" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:divider">#FF0000</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:background">@color/grayColor</item>
+    </style>
+    <style name="Toolbar_Theme">
+        <item name="colorControlNormal">@color/whiteColor</item>
+        <item name="android:textColor">@color/toolbarTextColor</item>
+        <item name="android:textSize">@dimen/toolbarTextSize</item>
+        <item name="android:color">@color/toolbarBG</item>
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+    <item name="android:textColor">@color/accentColor</item>
+</style>
+
+    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/blackColor</item>
+    </style>
+
+    <style name="MyCustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+</resources>

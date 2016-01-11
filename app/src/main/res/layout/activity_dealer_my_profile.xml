@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.careager.DealerMyProfile">
+
+    <LinearLayout
+        android:id="@+id/profile_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/ic_profile_default"
+        >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:theme="@style/Toolbar_Theme"
+        android:elevation="4dp"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/dealer_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_gravity="center"
+            android:drawablePadding="5dp"
+            android:textColor="@color/toolbarTextColor"
+            android:textSize="@dimen/toolbarTextSize"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/dealer_profile_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/profile_top"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dealer_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:paddingLeft="10dp"
+            android:textColor="@color/blackColor"
+            />
+
+        <EditText
+            android:id="@+id/dealer_profile_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mobile"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/blackColor"
+            />
+
+        <TextView
+            android:id="@+id/dealer_profile_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/blackColor"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Overview:"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/blackColor"
+            />
+
+        <EditText
+            android:id="@+id/dealer_profile_overview"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text=""
+            android:layout_marginTop="5dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            android:background="@color/grayColor"
+            android:textColor="@color/blackColor"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Edit Profile"
+        android:background="@color/redColor"
+        android:textColor="@color/buttonTextColor"
+        android:minHeight="@dimen/button_min_height"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:background="@drawable/bg_rounded_shape"
+            android:elevation="8dp"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/showroom_offer_image"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="150dp" />
+
+
+
+            <TextView
+                android:layout_below="@id/showroom_offer_image"
+                android:id="@+id/showroom_offer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:textColor="@color/textColor"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+

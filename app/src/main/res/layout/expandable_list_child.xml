@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center_vertical"
+        >
+        <CheckBox
+            android:id="@+id/cb_services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/checkbox_selector"
+            />
+        <TextView
+            android:id="@+id/lblListItem"
+            android:layout_width="0dp"
+            android:layout_weight="1.7"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_text_Size"
+            android:textColor="@color/textColor"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/lblListPrice"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_text_Size"
+            android:textColor="@color/textColor"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

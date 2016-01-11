@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.careager.ProfileSaleDetail">
+       <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:theme="@style/Toolbar_Theme"
+        android:elevation="4dp"
+        android:background="@color/toolbarBG"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/dealer_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Detail"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:drawablePadding="5dp"
+            android:textColor="@color/toolbarTextColor"
+            android:textSize="@dimen/toolbarTextSize"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/ic_default_loading"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:padding="5dp"
+            android:textStyle="bold"
+
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/detail_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:padding="5dp"
+            />
+
+            <Button
+                android:id="@+id/btn_dealer_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/customized_button"
+                android:minHeight="@dimen/popup_button_min_height"
+                android:text="Dealer Details"
+                android:textColor="@color/buttonTextColor"
+                android:padding="5dp"
+                android:textSize="@dimen/small_text_Size"
+                android:textAllCaps="false"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:id="@+id/detail_maker"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Maker"
+                android:textSize="@dimen/smallTextSize"
+                />
+
+            <TextView
+                android:id="@+id/detail_model"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Model"
+                android:textSize="@dimen/smallTextSize"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:id="@+id/detail_vehicle_type"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Type"
+                android:textSize="@dimen/smallTextSize"
+                />
+
+            <TextView
+                android:id="@+id/detail_year"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Year"
+                android:textSize="@dimen/smallTextSize"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:id="@+id/detail_color"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="color"
+                android:textSize="@dimen/smallTextSize"
+                />
+
+            <TextView
+                android:id="@+id/detail_status"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="status"
+                android:textSize="@dimen/smallTextSize"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:id="@+id/detail_mileage"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Mileage"
+                android:textSize="@dimen/smallTextSize"
+                />
+
+            <TextView
+                android:id="@+id/detail_gear_type"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Gear Type"
+                android:textSize="@dimen/smallTextSize"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:id="@+id/detail_fuel_type"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Fuel Type"
+                android:textSize="@dimen/smallTextSize"
+                />
+
+            <TextView
+                android:id="@+id/detail_in_stock"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="In Stock"
+                android:textSize="@dimen/smallTextSize"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_interiour_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
+                android:layout_height="wrap_content"
+                android:text="Interiour Features"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_drop"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sub_interiour_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kkkk"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/smallTextSize"
+            />
+        <LinearLayout
+            android:id="@+id/ll_exteriour_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
+                android:layout_height="wrap_content"
+                android:text="Exteriour Features"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_drop"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sub_exteriour_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kkkk"
+            android:padding="5dp"
+            android:visibility="gone"
+            />
+        <LinearLayout
+            android:id="@+id/ll_safety_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
+                android:layout_height="wrap_content"
+                android:text="Safety Features"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_drop"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sub_safety_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kkkk"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/smallTextSize"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_extra_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
+                android:layout_height="wrap_content"
+                android:text="Extra Features"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_drop"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sub_extra_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kkkk"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/smallTextSize"
+            />
+        <LinearLayout
+            android:id="@+id/ll_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:background="@color/grayColor"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_drop"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sub_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kkkk"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/smallTextSize"
+            />
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

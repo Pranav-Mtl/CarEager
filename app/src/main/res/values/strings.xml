@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">CarEager</string>
+    <string name="title_activity_splash">Splash</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Add New Category</string>
+    <string name="action_new_category">Add New Category</string>
+    <string name="action_new_sales">Sales</string>
+    <string name="action_new_service">Service and Repair</string>
+    <string name="action_new_profile">My Profile</string>
+    <string name="action_new_settings">Settings</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="facebook_app_id">1004714449569806</string>
+
+    <!-- colors -->
+    <color name="whiteColor">#fff</color>
+    <color name="toolbarBG">#222222</color>
+    <color name="toolbarTextColor">#fff</color>
+
+    <color name="statusColor">#ff0000</color>
+    <color name="redColor">#ff0000</color>
+    <color name="blackColor">#222222</color>
+
+    <color name="buttonDefaultBG">#ff0000</color>
+    <color name="buttonPressedtBG">#FF8A8A</color>
+    <color name="buttonTextColor">#fff</color>
+
+    <color name="accentColor">#222222</color>
+
+    <color name="textColor">#222222</color>
+    <color name="textGrayColor">#6B6B6B</color>
+    <color name="textRedColor">#ff0000</color>
+
+    <color name="textSecondaryColor">#6B6B6B</color>
+    <color name="textHintColor">#6B6B6B</color>
+
+    <color name="grayColor">#e8e8e8</color>
+
+    <color name="tabTextColor">#fff</color>
+    <color name="tabSlidingIndicator">#ff0000</color>
+    <color name="tabUnderLineColor">#ff0000</color>
+    <color name="tabDivider">#fff</color>
+
+
+    <string name="title_activity_user_signup">UserSignup</string>
+    <string name="title_activity_user_login">UserLogin</string>
+
+    <!-- messages-->
+
+    <string name="no_internet_title">No Internet</string>
+    <string name="no_internet_message">Looks like you have no or very slow data connectivity.</string>
+
+    <string name="no_response_title">D\'oh!</string>
+    <string name="no_response_message">Sorry, something didn\'t quite work.</string>
+
+    <string name="popup_negative_button_text">Cancel</string>
+    <string name="popup_positive_button_text">Try again?</string>
+
+    <string name="failure_login_message">Invalid details.</string>
+    <string name="failure_signup_message">Email-Id or phone number already exists.</string>
+
+    <string name="dealer_no_category_message">Please select a primary category.</string>
+    <string name="title_activity_dealer_signup_category">DealerSignupCategory</string>
+    <string name="title_activity_dealer_signup">DealerSignup</string>
+    <string name="title_activity_how_it_work">HowItWork</string>
+    <string name="title_activity_user_home_screen">UserHomeScreen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tab_one_title">New/Old Cars</string>
+    <string name="tab_two_title">Service</string>
+    <string name="title_activity_coordinator_layout">CoordinatorLayout</string>
+    <string name="title_activity_user_search">UserSearch</string>
+    <string name="title_activity_dealer_home_screen">DealerHomeScreen</string>
+
+    <string name="dealer_tab_one_title">Home</string>
+    <string name="dealer_tab_two_title">Nearby Search</string>
+    <string name="dealer_tab_three_title">Magazine</string>
+    <string name="dealer_tab_four_title">Updates</string>
+    <string name="dealer_tab_five_title">Latest Offers</string>
+    <string name="title_activity_user_filter">UserFilter</string>
+
+    <string-array name="category">
+        <item>Car dealers</item>
+        <item>Service stations</item>
+        <item>Petrol pumps</item>
+        <item>Insurance offices</item>
+        <item>Mechanic shops</item>
+        <item>Washing shops</item>
+        <item>Tyre repair/puncture shops</item>
+        <item>Spare parts/accessories shops</item>
+    </string-array>
+
+    <!-- string for popup comes when no internet. -->
+    <string name="_no_internet_title">No Internet</string>
+    <string name="_no_internet_message">Looks like you have no or very slow data connectivity.</string>
+    <string name="_no_internet_save">Try again?</string>
+    <string name="_no_internet_ok">OK</string>
+    <string name="_no_internet_cancel">Cancel</string>
+
+    <!--string for popup when no response from server..-->
+    <string name="_no_response_title">D\'oh!</string>
+    <string name="_no_response_message">Sorry, something didn\'t quite work.</string>
+    <string name="_no_response_save">Try again?</string>
+    <string name="_no_response_cancel">Cancel</string>
+
+    <!--string for popup when no result from server..-->
+    <string name="_no_result_title">D\'oh!</string>
+    <string name="_no_result_message">No Result Found</string>
+    <string name="_no_result_save">OK</string>
+    <string name="_no_result_cancel">Cancel</string>
+
+</resources>

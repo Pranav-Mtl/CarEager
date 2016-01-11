@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:theme="@style/Toolbar_Theme"
+            android:elevation="4dp"
+            android:background="@color/toolbarBG"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:minHeight="?attr/actionBarSize">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_logo_header"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+
+        </android.support.v7.widget.Toolbar>
+
+        <!-- <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+             app:layout_scrollFlags="scroll|enterAlways"
+           android:background="@drawable/search_result_bg"
+           ></LinearLayout>-->
+        <!--<LinearLayout
+            android:id="@+id/googleMap"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            tools:layout="@layout/abc_action_bar_title_item" />-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/article_question_list"
+
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent"/>
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

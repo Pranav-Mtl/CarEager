@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimaryDark">@color/statusColor</item>
+        <item name="android:colorPrimary">@color/toolbarBG</item>
+        <item name="android:colorAccent">@color/accentColor</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="colorControlNormal">@color/blackColor</item>
+        <item name="colorControlActivated">@color/redColor</item>
+        <item name="colorControlHighlight">@color/redColor</item>
+        <item name="android:actionMenuTextColor">@color/blackColor</item>
+        <item name="android:navigationBarColor">@color/toolbarBG</item>
+        <item name="android:windowBackground">@color/whiteColor</item>
+        <item name="android:textColorSecondary">@color/textSecondaryColor</item>
+        <item name="android:dropDownListViewStyle">@style/PopupMenuListView</item>
+        <item name="dropDownListViewStyle">@style/PopupMenuListView</item>
+
+    </style>
+
+    <style name="PopupMenuListView" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:divider">#FF0000</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:background">@color/grayColor</item>
+    </style>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/forum_user_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_alignParentLeft="true"
+
+
+        />
+
+    <LinearLayout
+        android:layout_toRightOf="@id/forum_user_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+    <TextView
+        android:id="@+id/forum_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:text=""
+        android:paddingLeft="5dp"
+        android:textSize="@dimen/textSize"
+        />
+        <TextView
+            android:id="@+id/forum_user_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
+            android:text=""
+            android:singleLine="true"
+            android:paddingLeft="5dp"
+            android:textSize="@dimen/small_text_Size"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/forum_user_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text=""
+        android:textColor="@color/textColor"
+        />
+
+
+</RelativeLayout>

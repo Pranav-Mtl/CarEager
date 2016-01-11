@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackColor"
+    tools:context="com.careager.DealerInfoDialog">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:layout_marginLeft="5dp"
+       android:layout_marginRight="5dp"
+       >
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_marginTop="10dp"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:id="@+id/dialog_image"
+               android:layout_width="100dp"
+               android:layout_height="100dp" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               >
+               <TextView
+                   android:id="@+id/dialog_name"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Name"
+                   android:textColor="@color/whiteColor"
+                   />
+
+               <TextView
+                   android:id="@+id/dialog_address"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Name"
+                   android:layout_marginTop="10dp"
+                   android:textColor="@color/whiteColor"
+                   />
+               <RatingBar
+                   android:id="@+id/dialog_rating"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:numStars="5"
+                   android:stepSize="1"
+                   android:maxWidth="110dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_gravity="center_vertical"
+                   android:maxHeight="100dp"
+                   android:minHeight="20dp"
+                   android:progressDrawable="@drawable/ratingbar_customized"
+                   android:isIndicator="false"/>
+           </LinearLayout>
+       </LinearLayout>
+        <Button
+            android:id="@+id/dialog_view_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customized_button"
+            android:text="View Profile"
+            android:textColor="@color/whiteColor"
+            android:minHeight="@dimen/popup_button_min_height"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            />
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColor="@color/whiteColor"
+           android:text="Overview:"
+           android:textStyle="bold"
+           android:layout_marginTop="10dp"
+           />
+       <TextView
+           android:id="@+id/dialog_overview"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColor="@color/whiteColor"
+           android:text="jjjnnn"
+           android:layout_marginTop="5dp"
+           />
+   </LinearLayout>
+</RelativeLayout>

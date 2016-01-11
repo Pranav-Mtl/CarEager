@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="com.careager.UserFilter">
+
+    <item android:id="@+id/action_category" android:title="@string/action_new_category"
+        android:orderInCategory="100" app:showAsAction="never"
+        />
+    <item android:id="@+id/action_service" android:title="@string/action_new_service"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_sales" android:title="@string/action_new_sales"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_profile" android:title="@string/action_new_profile"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_settings" android:title="@string/action_new_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+</menu>
