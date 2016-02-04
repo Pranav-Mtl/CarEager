@@ -1,6 +1,7 @@
 package com.careager;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.careager.BE.ProfileInformationBE;
 import com.careager.BL.ProfileInformationBL;
@@ -26,7 +28,7 @@ import com.facebook.*;
 public class Settings extends AppCompatActivity {
 
     ImageButton arroBtn;
-    LinearLayout showPassword,btnClick;
+    LinearLayout showPassword,btnClick,btnAppShare;
     boolean flag=true;
     boolean flag1=true;
     EditText userName,userMobileNum,oldPass,newPass,confirmPass,userEmail,userAddress;
@@ -35,6 +37,7 @@ public class Settings extends AppCompatActivity {
     String name,address;
     ImageButton nameBtn,addressBtn;
     Button saveBtn;
+
 
     ProfileInformationBE objProfileInformationBE;
     ProfileInformationBL objProfileInformationBL;
@@ -186,6 +189,17 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        btnAppShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"http://tinyurl.com/careager");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
+
 
 
     }
@@ -207,6 +221,9 @@ public class Settings extends AppCompatActivity {
         userEmail=(EditText)findViewById(R.id.userEmail);
         btnClick=(LinearLayout)findViewById(R.id.arrow_btn1);
         llAddress=(LinearLayout)findViewById(R.id.ll_address);
+        btnAppShare= (LinearLayout) findViewById(R.id.setting_appshare);
+
+
 
         objProfileInformationBE=new ProfileInformationBE();
         objProfileInformationBL=new ProfileInformationBL();
@@ -283,6 +300,13 @@ public class Settings extends AppCompatActivity {
 
     private class UpdateData extends AsyncTask<String,String,String>{
         @Override
+        protected void onPreExecute() {
+            progressDialog.show();
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Loading...");
+        }
+
+        @Override
         protected String doInBackground(String... params) {
             String result=objSettingsBL.updateDetails(params[0], params[1], params[2], params[3], params[4], params[5]);
             return result;
@@ -300,12 +324,22 @@ public class Settings extends AppCompatActivity {
                     newPass.setText("");
                     confirmPass.setText("");
                     Constant.NAME=userName.getText().toString();
+                    Toast.makeText(getApplicationContext(),"Old password didn't matched",Toast.LENGTH_SHORT).show();
                 }
-                else {
-
+                else if("Fail".equalsIgnoreCase(s)){
+                    Toast.makeText(getApplicationContext(),"Old password didn't matched",Toast.LENGTH_SHORT).show();
+                    System.out.print("Update res"+s);
                 }
-            }catch (Exception e){
+                else
+                    Toast.makeText(getApplicationContext(),"Something went wrong. please try again",Toast.LENGTH_SHORT).show();
 
+            }catch (NullPointerException e){
+
+            }
+            catch (Exception e){
+
+            }finally {
+                progressDialog.dismiss();
             }
         }
     }

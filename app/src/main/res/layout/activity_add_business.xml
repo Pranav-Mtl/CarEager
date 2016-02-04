@@ -17,12 +17,13 @@
         android:background="@color/toolbarBG"
 
         android:minHeight="?attr/actionBarSize">
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_logo_header"
+            android:text="Create Account"
             android:gravity="center"
             android:layout_gravity="center"
+            android:textColor="@color/toolbarTextColor"
             />
 
     </android.support.v7.widget.Toolbar>
@@ -41,10 +42,59 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:gravity="center_horizontal"
-
-            android:text="Get started with CarEager business"
-            android:background="@color/grayColor"
+            android:textColor="@color/whiteColor"
+            android:text="Get Your Business on CarEager For Free!"
+            android:background="@color/redColor"
             />
+        <RelativeLayout
+            android:id="@+id/rl_business_cover"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            >
+            <ImageView
+                android:id="@+id/business_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/ic_default_cover"
+                />
+            <LinearLayout
+                android:id="@+id/ll_business_dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:id="@+id/business_dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+
+                    android:background="@drawable/ic_default_dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/loop_pen_selector"
+                    android:layout_gravity="bottom"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/loop_pen_selector"
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+
+                />
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,22 +105,29 @@
             >
 
             <TextView
-                android:id="@+id/contact_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Create Account"
-                android:textStyle="bold"
+                android:padding="5dp"
+                android:gravity="center"
+                android:text="Add a cover image of your business above."
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textGrayColor"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-
+                android:textSize="@dimen/smallTextSize"
+                android:layout_marginTop="5dp"
+                android:text="This section is for adding any local car business on CarEager.
+But if you are owner of a business, please visit “BUSINESS SIGNUP” page to add your business on CarEager for free. "
                 />
 
             <EditText
                 android:id="@+id/business_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:hint="Business name"
                 android:imeOptions="actionNext"
                 android:layout_marginLeft="20dp"
@@ -81,19 +138,20 @@
                 android:id="@+id/business_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:hint="Contact no. (optional) "
                 android:inputType="number"
                 android:imeOptions="actionNext"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:maxLength="10"
                 />
 
             <EditText
                 android:id="@+id/business_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:hint="Email-id (optional) "
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
@@ -106,48 +164,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_spinner_bg"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 ></Spinner>
 
-            <AutoCompleteTextView
-                android:id="@+id/business_address"
+            <Spinner
+                android:id="@+id/business_company_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="Address"
-                android:imeOptions="actionNext"
+                android:background="@drawable/ic_spinner_bg"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                />
+                ></Spinner>
 
-            <fragment
-                android:id="@+id/googleMap"
+            <Spinner
+                android:id="@+id/business_state_list"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="10dp"
-                class="com.google.android.gms.maps.SupportMapFragment"
-                />
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_spinner_bg"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                ></Spinner>
+
 
             <Button
                 android:id="@+id/business_done"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/customized_button"
-                android:text="Create Account"
-                android:layout_marginTop="10dp"
+                android:text="Add Local Business"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:padding="10dp"
                 android:layout_gravity="center"
                 android:minHeight="@dimen/button_min_height"
                 android:textColor="@color/whiteColor"
                 />
 
+
         </LinearLayout>
 
     </LinearLayout>
 
 </ScrollView>
+
+
 
 </RelativeLayout>

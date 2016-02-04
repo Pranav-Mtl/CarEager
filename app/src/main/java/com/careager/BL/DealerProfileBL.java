@@ -42,6 +42,7 @@ public class DealerProfileBL {
         String baseURL;
         String reviews;
         String category;
+        String gallery;
         JSONParser jsonP=new JSONParser();
         try {
             Object obj =jsonP.parse(result);
@@ -53,12 +54,15 @@ public class DealerProfileBL {
             baseURL=jsonObject.get("base_url").toString();
             reviews=jsonObject.get("review").toString();
             category=jsonObject.get("tab").toString();
-
-            Util.setSharedPrefrenceValue(mContext,Constant.PREFS_NAME,Constant.SP_DEALER_CATEGORY,category);
+            gallery=jsonObject.get("gallery").toString();
 
             parseBaseURL(baseURL);
             parseProfile(profile);
             parseReviews(reviews);
+            parseGallery(gallery);
+            parseCategory(category);
+
+
 
         } catch (Exception e) {
             e.getLocalizedMessage();
@@ -75,7 +79,9 @@ public class DealerProfileBL {
             JSONArray jsonArrayObject = (JSONArray) obj;
             JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
             objDealerProfileBE.setProfileBaseURL(jsonObject.get("profile_avatar").toString());
+            Constant.reviewBaseURL=jsonObject.get("profile_avatar").toString();
             objDealerProfileBE.setSaleBaseURL(jsonObject.get("sales_info_feature_image").toString());
+            Constant.galleryBaseURL=jsonObject.get("gallery").toString();
         }
         catch (Exception e){
 
@@ -92,6 +98,7 @@ public class DealerProfileBL {
             JSONObject jsonObject=(JSONObject)jsonP.parse(jsonArrayObject.get(0).toString());
             objDealerProfileBE.setName(jsonObject.get("name").toString());
             objDealerProfileBE.setImage(jsonObject.get("avatar").toString());
+            objDealerProfileBE.setCover(jsonObject.get("cover").toString());
             objDealerProfileBE.setOverview(jsonObject.get("overview").toString());
             objDealerProfileBE.setLocation(jsonObject.get("location").toString());
             objDealerProfileBE.setEmail(jsonObject.get("email").toString());
@@ -136,6 +143,66 @@ public class DealerProfileBL {
             } catch (Exception e) {
                 e.getLocalizedMessage();
             }
+        }
+        else {
+            Constant.reviewImage = new String[0];
+        }
+
+    }
+
+    private void parseGallery(String result){
+
+        if(!result.equals("[]")) {
+            JSONParser jsonP = new JSONParser();
+            try {
+                Object obj = jsonP.parse(result);
+                JSONArray jsonArrayObject = (JSONArray) obj;
+                Constant.galleryImages = new String[jsonArrayObject.size()];
+
+
+                for (int i = 0; i < jsonArrayObject.size(); i++) {
+                    JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
+                    Constant.galleryImages[i]=jsonObject.get("gallery").toString();
+
+
+                }
+
+
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+        }
+        else {
+            Constant.galleryImages = new String[0];
+        }
+
+    }
+
+
+    private void parseCategory(String result){
+
+        if(!result.equals("[]")) {
+            JSONParser jsonP = new JSONParser();
+            try {
+                Object obj = jsonP.parse(result);
+                JSONArray jsonArrayObject = (JSONArray) obj;
+                Constant.categoryTab = new String[jsonArrayObject.size()];
+
+
+                for (int i = 0; i < jsonArrayObject.size(); i++) {
+                    JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
+                    Constant.categoryTab[i]=jsonObject.get("category").toString();
+
+
+                }
+
+
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+        }
+        else {
+            Constant.categoryTab = new String[0];
         }
 
     }

@@ -42,6 +42,10 @@ public class DealerSignupCategory extends AppCompatActivity implements View.OnCl
 
     List listCategory=new ArrayList();
 
+    String lat,longt,address;
+
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +99,15 @@ public class DealerSignupCategory extends AppCompatActivity implements View.OnCl
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         btnNext.setOnClickListener(this);
+
+        intent=getIntent();
+        lat=intent.getStringExtra("Lat");
+        longt=intent.getStringExtra("Long");
+        address=intent.getStringExtra("Address");
+
+        objDealerSignUpBE.setLatitude(lat);
+        objDealerSignUpBE.setLongitude(longt);
+        objDealerSignUpBE.setLocation(address);
 
 
     }

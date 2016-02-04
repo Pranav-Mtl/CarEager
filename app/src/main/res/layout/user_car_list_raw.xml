@@ -33,9 +33,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blackColor"
-                    android:text="title"
+                    android:text=""
                     android:paddingLeft="5dp"
                     android:textStyle="bold"
+                    android:textSize="@dimen/smallTextSize"
                     />
 
                 <TextView
@@ -43,8 +44,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/redColor"
-                    android:text="Maker"
+                    android:text=""
                     android:layout_alignParentRight="true"
+                    android:textSize="@dimen/smallTextSize"
                     />
             </RelativeLayout>
             <TextView
@@ -52,9 +54,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blackColor"
-                android:text="title"
+                android:text=""
                 android:padding="5dp"
-
+                android:textSize="@dimen/smallTextSize"
                 />
 
         </LinearLayout>
@@ -65,8 +67,7 @@
             android:textColor="@color/whiteColor"
             android:padding="5dp"
             android:background="@color/blackColor"
-
-            android:text="2014"
+            android:text=""
             />
 
         <TextView
@@ -77,7 +78,7 @@
             android:layout_alignParentRight="true"
             android:padding="5dp"
             android:background="@color/redColor"
-            android:text="\u20B9 48000"
+            android:text=""
             />
         <!-- <RelativeLayout
              android:id="@+id/sales_layout_one"

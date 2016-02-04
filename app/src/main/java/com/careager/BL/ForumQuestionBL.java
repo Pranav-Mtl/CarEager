@@ -43,7 +43,7 @@ public class ForumQuestionBL {
 
             Constant.forumID=new String[jsonArrayObject.size()];
             Constant.forumTitle=new String[jsonArrayObject.size()];
-            Constant.forumDescription=new String[jsonArrayObject.size()];
+
             Constant.forumDate=new String[jsonArrayObject.size()];
 
             for(int i=0;i<jsonArrayObject.size();i++) {
@@ -51,7 +51,6 @@ public class ForumQuestionBL {
 
                 Constant.forumID[i] = jsonObject.get("id").toString();
                 Constant.forumTitle[i] = jsonObject.get("title").toString();
-                Constant.forumDescription[i] = jsonObject.get("description").toString();
                 Constant.forumDate[i] = jsonObject.get("date").toString();
 
             }

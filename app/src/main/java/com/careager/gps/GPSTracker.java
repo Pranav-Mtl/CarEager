@@ -95,7 +95,10 @@ public class GPSTracker implements LocationListener
 		            }
 		        }
 
-		    } catch (Exception e) {
+		    }catch (SecurityException e) {
+				e.printStackTrace();
+			}
+			catch (Exception e) {
 		        e.printStackTrace();
 		    }
 

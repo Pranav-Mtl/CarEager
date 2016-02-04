@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,7 @@ import android.widget.TextView;
 
 import com.careager.BL.SearchServiceBL;
 import com.careager.Constant.Constant;
-import com.careager.Profile;
-import com.careager.ProfileSaleDetail;
+import com.careager.DealerProfile;
 import com.careager.careager.R;
 import com.squareup.picasso.Picasso;
 
@@ -80,7 +78,7 @@ public class SearchServiceAdapter extends RecyclerView.Adapter<SearchServiceAdap
 
             switch (view.getId()){
                 case R.id.rl_service_list:
-                    mContext.startActivity(new Intent(mContext, Profile.class).putExtra("ID",Constant.serviceID[position]).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    mContext.startActivity(new Intent(mContext, DealerProfile.class).putExtra("ID",Constant.serviceID[position]).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     break;
             }
         }};

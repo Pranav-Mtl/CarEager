@@ -234,7 +234,6 @@ public class UserChat extends AppCompatActivity implements View.OnClickListener 
                     UserChatBE curChatObj = addToChat(dealerID,dealerName,strMessage, "Sent", dt);
                     addToDB(curChatObj); // adding to db
                     populateChatMessages();
-
                     clearMessageTextBox();
 
                     new SendChatData().execute(userID,dealerID,strMessage,strType);
@@ -279,7 +278,7 @@ public class UserChat extends AppCompatActivity implements View.OnClickListener 
     {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
         Date currentLocalTime = cal.getTime();
-        SimpleDateFormat date = new SimpleDateFormat("dd:MM:yyyy hh:mm a");
+        SimpleDateFormat date = new SimpleDateFormat("hh:mm a dd:MM:yyyy");
 // you can get seconds by adding  "...:ss" to it
         date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         localTime = date.format(currentLocalTime);

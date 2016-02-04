@@ -19,6 +19,15 @@ public class DealerProfileBE implements Serializable {
     private String careagerRating;
     private String totalRating;
     private String rating;
+    private String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public String getProfileBaseURL() {
         return profileBaseURL;

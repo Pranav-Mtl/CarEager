@@ -121,7 +121,6 @@ public class HomeScreenBL {
             Object obj = jsonP.parse(result);
             JSONArray jsonArrayObject = (JSONArray) obj;
 
-
                 JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
                 Constant.NAME=jsonObject.get("name").toString();
                 Constant.IMAGE=jsonObject.get("avatar").toString();

@@ -24,7 +24,7 @@ public class MagazineFragment extends Fragment {
     Toolbar toolbar;
     ProgressDialog progressDialog;
 
-    String url="http://ec2-52-76-48-31.ap-southeast-1.compute.amazonaws.com/careager/blog/webview_magazine";
+    String url="http://www.careager.com/blog/webview_magazine";
 
     public MagazineFragment() {
         // Required empty public constructor

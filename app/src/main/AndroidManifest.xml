@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -94,9 +96,6 @@
             android:name="com.careager.UserFilter"
             android:label="" />
         <activity
-            android:name="com.careager.Profile"
-            android:label="" />
-        <activity
             android:name="com.careager.ProfileCategory"
             android:label="" />
         <activity
@@ -161,6 +160,7 @@
             android:label="" />
         <activity
             android:name="com.careager.ArticleQuestionDetail"
+            android:windowSoftInputMode="adjustPan"
             android:label="" />
         <activity
             android:name="com.careager.TipsAndAdvice"
@@ -174,7 +174,37 @@
         <activity
             android:name="com.careager.ForumCategory"
             android:label="" />
-        <activity android:name="com.careager.Settings"
+        <activity
+            android:name="com.careager.Settings"
+            android:label="" />
+        <activity
+            android:name="com.careager.DealerProfile"
+            android:label="" />
+        <activity
+            android:name="com.careager.AddBusinessMap"
+            android:label="" />
+        <activity
+            android:name="com.careager.AboutUs"
+            android:label="" />
+        <activity
+            android:name="com.careager.DealerSignupMap"
+            android:label="" />
+        <activity
+            android:name="com.careager.ClaimBusiness"
+            android:label="" />
+        <activity
+            android:name="com.careager.AboutusWebView"
+            android:label="" />
+        <activity
+            android:name="com.careager.ProfileGallery"
+            android:label="" />
+        <activity
+            android:name="com.careager.RoadsideAssistance"
+            android:label="" />
+        <activity
+            android:name="com.careager.DealerChatList"
+            android:label="" />
+        <activity android:name="com.careager.ClaimBusinessPre"
             android:label=""
             ></activity>
     </application>

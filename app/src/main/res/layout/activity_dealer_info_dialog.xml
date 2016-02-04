@@ -61,17 +61,78 @@
                    android:isIndicator="false"/>
            </LinearLayout>
        </LinearLayout>
-        <Button
-            android:id="@+id/dialog_view_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/customized_button"
-            android:text="View Profile"
-            android:textColor="@color/whiteColor"
-            android:minHeight="@dimen/popup_button_min_height"
-            android:padding="5dp"
-            android:textAllCaps="false"
-            />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="15dp"
+           android:gravity="center_vertical"
+           >
+
+           <Button
+               android:id="@+id/dialog_view_profile"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/customized_button"
+               android:text="View Profile"
+               android:textColor="@color/whiteColor"
+               android:minHeight="@dimen/popup_button_min_height"
+               android:padding="5dp"
+               android:textAllCaps="false"
+               />
+
+
+           <LinearLayout
+               android:id="@+id/dealer_dialog_call"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:gravity="center"
+               android:layout_marginLeft="20dp"
+               android:padding="5dp"
+               >
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/ic_call"
+                   />
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Call"
+                   android:textColor="@color/whiteColor"
+                   android:layout_marginTop="5dp"
+                   android:textSize="@dimen/small_text_Size"
+                   />
+           </LinearLayout>
+
+           <!---->
+
+           <LinearLayout
+               android:id="@+id/dealer_dialog_enquiry"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:gravity="center"
+               android:layout_marginLeft="10dp"
+               android:padding="5dp"
+               >
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/ic_enquiry"
+                   />
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Enquiry"
+                   android:textColor="@color/whiteColor"
+                   android:layout_marginTop="5dp"
+                   android:textSize="@dimen/small_text_Size"
+                   />
+           </LinearLayout>
+
+       </LinearLayout>
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

@@ -5,7 +5,24 @@ package com.careager.BE;
  */
 public class ArticleQuestionDetailBE {
 
-    private String title,description,name,timestamp;
+    private String title,description,name,timestamp,image,baseURL;
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getBaseURL() {
+        return baseURL;
+    }
+
+    public void setBaseURL(String baseURL) {
+        this.baseURL = baseURL;
+    }
 
     public String getTitle() {
         return title;

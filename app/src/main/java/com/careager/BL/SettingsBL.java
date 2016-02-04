@@ -25,8 +25,8 @@ public class SettingsBL {
 
 
 
-        String URL="";
-        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH, URL, Constant.WS_USER_SIGNIN);
+        String URL="id="+id+"&type="+type+"&name="+name+"&location="+address+"&old_password="+oldPass+"&new_password="+newPass;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_UPDATE_SETTINGS);
         return txtJson;
     }
 

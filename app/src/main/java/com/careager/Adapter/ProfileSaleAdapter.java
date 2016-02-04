@@ -17,6 +17,12 @@ import com.careager.ProfileSaleDetail;
 import com.careager.careager.R;
 import com.squareup.picasso.Picasso;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * Created by appslure on 02-12-2015.
  */
@@ -51,7 +57,11 @@ public class ProfileSaleAdapter extends RecyclerView.Adapter<ProfileSaleAdapter.
         holder.tvTitle.setText(Constant.saleTitle[position]);
         holder.tvMaker.setText("Maker: "+Constant.saleMaker[position]);
         holder.tvYear.setText(Constant.saleYear[position]);
-        holder.tvPrice.setText("\u20B9 "+Constant.salePrice[position]);
+
+        Format format = NumberFormat.getCurrencyInstance(new Locale("en", "in"));
+        System.out.println(format.format(new BigInteger(Constant.salePrice[position])));
+        String price=format.format(new BigInteger(Constant.salePrice[position]));
+        holder.tvPrice.setText(price);
 
         Picasso.with(mContext)
                 .load(objDealerProfileBE.getSaleBaseURL()+Constant.saleImage[position])

@@ -68,15 +68,15 @@ public class ForumChatListAdapter extends ArrayAdapter<UserChatBE> {
             viewHolder.tvMessage.setText(h.getPERSON_CHAT_MESSAGE());
             viewHolder.tvDate.setText(h.getCHAT_DATE());
             if (h.getPERSON_CHAT_TO_FROM().equalsIgnoreCase("RECEIVED")) {
-                viewHolder.llRaw.setGravity(Gravity.RIGHT);
-                viewHolder.llChatBg.setBackgroundResource(R.drawable.bubble_a);
+                viewHolder.llRaw.setGravity(Gravity.LEFT);
+                viewHolder.llChatBg.setBackgroundResource(R.drawable.chat_bg_shape);
                 viewHolder.llChatBg.setPadding(8,8,8,8);
 
             }
             else
             {
-                viewHolder.llRaw.setGravity(Gravity.LEFT);
-                viewHolder.llChatBg.setBackgroundResource(R.drawable.bubble_b);
+                viewHolder.llRaw.setGravity(Gravity.RIGHT);
+                viewHolder.llChatBg.setBackgroundResource(R.drawable.chat_recieved_bg);
                 viewHolder.llChatBg.setPadding(8, 8, 8, 8);
             }
         }

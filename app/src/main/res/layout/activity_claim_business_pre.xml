@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.careager.ClaimBusinessPre">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:theme="@style/Toolbar_Theme"
+        android:elevation="8dp"
+        android:background="@color/toolbarBG"
+
+        android:minHeight="?attr/actionBarSize">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Claim Business"
+            android:textColor="@color/toolbarTextColor"
+            android:textSize="@dimen/toolbarTextSize"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="After claiming your business, you’ll be able to -"
+            android:textColor="@color/textColor"
+            android:padding="10dp"
+            android:textStyle="bold"
+
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 1. Manage your online showroom profile: Update your business’ name, overview, contact numbers, profile picture, cover image, change password, etc. \n
+2. Upload pictures of your business to your online showroom. \n
+3. Upload the products you sell (tyres, parts, accessories, etc.) \n
+4. Upload your entire stock of new/used cars if you’re a dealer. \n
+5. Display special offers to the customers on your online showroom. \n
+6. View/respond to the messages or requests by the customers.
+"
+            android:textColor="@color/textColor"
+            android:padding="5dp"
+            android:textSize="@dimen/small_text_Size"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
+            android:padding="5dp"
+            android:text="To start the Claim Business process, click the “Claim your business” button below and follow the instructions.
+"
+            />
+
+        <Button
+            android:id="@+id/claim_pre_business"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customized_button"
+            android:textColor="@color/buttonTextColor"
+            android:text="Claim Your Business"
+            android:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:minHeight="@dimen/button_min_height"
+            />
+</LinearLayout>
+    </ScrollView>
+</RelativeLayout>

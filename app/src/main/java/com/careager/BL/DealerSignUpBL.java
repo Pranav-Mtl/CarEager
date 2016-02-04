@@ -34,7 +34,7 @@ public class DealerSignUpBL {
             objDealerSignUpBE.setDealerCompany("");
         }
 
-        String URL="name="+objDealerSignUpBE.getName()+"&email="+objDealerSignUpBE.getEmail()+"&password="+objDealerSignUpBE.getPassword()+"&contact_no="+objDealerSignUpBE.getContact()+"&location="+objDealerSignUpBE.getLocation()+"&state="+objDealerSignUpBE.getState()+"&company="+objDealerSignUpBE.getDealerCompany()+"&category="+objDealerSignUpBE.getDealerCategory()+"&gcm_id="+objDealerSignUpBE.getGcmId()+"&device_id="+objDealerSignUpBE.getDeviceId();
+        String URL="name="+objDealerSignUpBE.getName()+"&email="+objDealerSignUpBE.getEmail()+"&password="+objDealerSignUpBE.getPassword()+"&contact_no="+objDealerSignUpBE.getContact()+"&location="+objDealerSignUpBE.getLocation()+"&state="+objDealerSignUpBE.getState()+"&company="+objDealerSignUpBE.getDealerCompany()+"&category="+objDealerSignUpBE.getDealerCategory()+"&gcm_id="+objDealerSignUpBE.getGcmId()+"&device_id="+objDealerSignUpBE.getDeviceId()+"&latitude="+objDealerSignUpBE.getLatitude()+"&longitude="+objDealerSignUpBE.getLongitude();
         String txtJson= RestFullWS.serverRequest(Constant.WS_PATH,URL, Constant.WS_DEALER_SIGNUP);
         return txtJson;
     }

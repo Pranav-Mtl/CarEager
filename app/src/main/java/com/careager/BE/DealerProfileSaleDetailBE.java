@@ -28,12 +28,31 @@ public class DealerProfileSaleDetailBE implements Serializable {
     private String image;
     private String baseUrl;
     private String dealerName;
+    private String dealerEmail;
+    private String dealerPhone;
     private String dealerImage;
     private String dealerLocation;
     private String dealerRating;
     private String dealerOverview;
     private String dealerAvatar;
     private String showRoomID;
+
+
+    public String getDealerEmail() {
+        return dealerEmail;
+    }
+
+    public void setDealerEmail(String dealerEmail) {
+        this.dealerEmail = dealerEmail;
+    }
+
+    public String getDealerPhone() {
+        return dealerPhone;
+    }
+
+    public void setDealerPhone(String dealerPhone) {
+        this.dealerPhone = dealerPhone;
+    }
 
     public String getShowRoomID() {
         return showRoomID;

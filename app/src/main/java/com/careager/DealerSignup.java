@@ -101,7 +101,7 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
         etContact= (EditText) findViewById(R.id.signup_mobile);
         etPassword= (EditText) findViewById(R.id.signup_password);
         spnCompanyName= (Spinner) findViewById(R.id.signup_company_name);
-        etArea= (EditText) findViewById(R.id.signup_area_house);
+        //etArea= (EditText) findViewById(R.id.signup_area_house);
         spnStates= (Spinner) findViewById(R.id.signup_states);
 
 
@@ -155,7 +155,7 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
         strEmail=etEmail.getText().toString();
         strContact=etContact.getText().toString();
         strPassword=etPassword.getText().toString();
-        strArea=etArea.getText().toString();
+        //strArea=etArea.getText().toString();
         strState=spnStates.getSelectedItem().toString();
         strCompany=spnCompanyName.getSelectedItem().toString();
 
@@ -184,10 +184,10 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
             flag=false;
         }
 
-        if(strArea.trim().length()==0){
+       /* if(strArea.trim().length()==0){
             etArea.setError("required");
             flag=false;
-        }
+        }*/
 
 
         if(strState.trim().equalsIgnoreCase("Select state")){
@@ -207,7 +207,6 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
                     objDealerSignUpBE.setName(strName);
                     objDealerSignUpBE.setContact(strContact);
                     objDealerSignUpBE.setPassword(strPassword);
-                    objDealerSignUpBE.setLocation(strArea);
                     objDealerSignUpBE.setState(strState);
                     objDealerSignUpBE.setDealerCompany(strCompany);
                     objDealerSignUpBE.setGcmId(gcmID);

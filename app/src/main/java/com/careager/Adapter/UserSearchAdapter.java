@@ -21,6 +21,11 @@ import com.careager.ProfileSaleDetail;
 import com.careager.careager.R;
 import com.squareup.picasso.Picasso;
 
+import java.math.BigInteger;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.UserSearchHolder> {
 
     Context mContext;
@@ -52,7 +57,16 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.Us
         holder.tvTitle.setText(Constant.searchTitle[position]);
         holder.tvMaker.setText("Maker: "+Constant.searchMaker[position]);
         holder.tvYear.setText(Constant.searchYear[position]);
-        holder.tvPrice.setText("₹"+Constant.searchPrice[position]);
+
+        Format format = NumberFormat.getCurrencyInstance(new Locale("en", "in"));
+        System.out.println(format.format(new BigInteger(Constant.searchPrice[position])));
+        String price=format.format(new BigInteger(Constant.searchPrice[position]));
+        holder.tvPrice.setText(price);
+
+
+        //holder.tvPrice.setText("₹"+Constant.searchPrice[position]);
+
+
         holder.tvDescription.setText(Constant.searchDescription[position]);
 
 

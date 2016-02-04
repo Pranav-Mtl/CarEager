@@ -40,7 +40,7 @@ public class AddBusinessBL {
             Object obj =jsonP.parse(result);
             JSONArray jsonArrayObject = (JSONArray) obj;
             JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
-            text=jsonObject.get("result").toString();
+            text=jsonObject.get("status").toString();
 
 
         } catch (Exception e) {

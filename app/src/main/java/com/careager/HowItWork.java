@@ -1,6 +1,7 @@
 package com.careager;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.careager.Constant.Constant;
 import com.careager.careager.R;
@@ -67,7 +69,7 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.hiw_signup:
                 if(Gender.getText().toString().equalsIgnoreCase(Constant.strLoginBusiness)){
-                    startActivity(new Intent(getApplicationContext(),DealerSignupCategory.class).putExtra("UserType",Gender.getText().toString()));
+                    startActivity(new Intent(getApplicationContext(),DealerSignupMap.class).putExtra("UserType",Gender.getText().toString()));
                 }
                 else {
                     startActivity(new Intent(getApplicationContext(),UserSignup.class).putExtra("UserType",Gender.getText().toString()));
@@ -82,8 +84,30 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
         }
     }
 
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );//***Change Here***
+            startActivity(intent);
 
+            // System.exit(0);
+            return;
+        }
+
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

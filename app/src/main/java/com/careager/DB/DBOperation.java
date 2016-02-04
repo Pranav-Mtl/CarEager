@@ -155,7 +155,7 @@ public class DBOperation {
 
     private class DatabaseHelper extends SQLiteOpenHelper {
         DatabaseHelper(Context context) {
-            super(context, "cardb.db", null, DB_VERSION);
+            super(context, "carsdb.db", null, DB_VERSION);
         }
 
 

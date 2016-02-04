@@ -16,6 +16,7 @@ public class UserChatBE {
     private String PERSON_ID="device_id";
     private String CHAT_DATE="date";
 
+
     public String getTABLE_FORUM() {
         return TABLE_FORUM;
     }

@@ -65,4 +65,48 @@ public class DealerLoginBL {
 
         return status;
     }
+
+    /*-------------------------------------------*/
+
+
+
+    public String validateSigninDetailsSocial(String emailID,String gcm,String device,Context context){
+        mContext=context;
+
+        String result=callWsUrlSocial(emailID,gcm,device);   // call webservice
+        String status=validateSocial(result);             // parse json
+        return status;
+
+    }
+
+    private String callWsUrlSocial(String emailID,String gcm,String device){
+
+
+        String URL="email="+emailID+"&gcm_id="+gcm+"device_id="+device;
+        String txtJson="";
+
+            txtJson = RestFullWS.serverRequest(Constant.WS_PATH_USER,URL, Constant.WS_USER_SIGNIN_SOCIAL);
+
+        return txtJson;
+    }
+
+    private String validateSocial(String result){
+
+        String status="";
+        JSONParser jsonP=new JSONParser();
+        try {
+            Object obj =jsonP.parse(result);
+            JSONArray jsonArrayObject = (JSONArray) obj;
+            JSONObject jsonObject=(JSONObject)jsonP.parse(jsonArrayObject.get(0).toString());
+            status=jsonObject.get("status").toString();
+            if(status.equalsIgnoreCase(Constant.WS_RESPONSE_SUCCESS)){
+                Util.setSharedPrefrenceValue(mContext,Constant.PREFS_NAME,Constant.SP_LOGIN_ID,jsonObject.get("showroom_id").toString());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
 }

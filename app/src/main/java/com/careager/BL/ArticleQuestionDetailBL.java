@@ -43,6 +43,7 @@ public class ArticleQuestionDetailBL {
             JSONArray jsonArrayObject = (JSONArray) obj;
             JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
 
+            objArticleQuestionDetailBE.setBaseURL(jsonObject.get("base_url").toString());
             parseDetail(jsonObject.get("detail").toString());
             String comment=jsonObject.get("comment_data").toString();
             if(!comment.equalsIgnoreCase("[]")){
@@ -62,8 +63,9 @@ public class ArticleQuestionDetailBL {
             JSONArray jsonArrayObject = (JSONArray) obj;
             JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
             objArticleQuestionDetailBE.setTitle(jsonObject.get("title").toString());
-            objArticleQuestionDetailBE.setDescription(jsonObject.get("description").toString());
+            objArticleQuestionDetailBE.setImage(jsonObject.get("image").toString());
             objArticleQuestionDetailBE.setTimestamp(jsonObject.get("date").toString());
+            objArticleQuestionDetailBE.setDescription(jsonObject.get("description").toString());
 
         } catch (Exception e) {
             e.getLocalizedMessage();
@@ -91,4 +93,44 @@ public class ArticleQuestionDetailBL {
             e.getLocalizedMessage();
         }
     }
+
+
+    public String sendArticleComment(String userID,String comment,String articleID){
+
+
+        String result=callWSComment(userID,comment,articleID);
+        String status=validateComment(result);
+
+        return status;
+    }
+
+    /* CALL WEB SERVICE */
+    private String callWSComment(String userID,String comment,String articleID){
+
+        //http://careager.com/careager_webservices/update_coment?name=san&email=san@jld.com&comment=hello%20world&article_id=6
+        String URL="&user_id="+userID+"&comment="+comment+"&article_id="+articleID;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_UPDATE_COMMENT);
+        return txtJson;
+
+    }
+
+    private String validateComment(String result)
+    {
+        String status="";
+        JSONParser jsonP=new JSONParser();
+        try {
+            Object obj =jsonP.parse(result);
+            JSONArray jsonArrayObject = (JSONArray) obj;
+
+                JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
+               status=jsonObject.get("status").toString();
+
+        } catch (Exception e) {
+            e.getLocalizedMessage();
+        }
+
+        return status;
+    }
+
+
 }

@@ -133,10 +133,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
             holder.imageView.setImageResource(mIcons[position - 1]);// Settimg the image with array of our icons
 
         } else {
-
-
             holder.Name.setText(Constant.NAME);
-
           /*  if(profilePic.trim().length()>0){
                 Log.d("IMAGE",Constant.IMAGE_URL+"/"+Constant.IMAGE);
                 Picasso.with(mContext)

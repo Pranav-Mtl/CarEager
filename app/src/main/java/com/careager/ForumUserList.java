@@ -9,18 +9,24 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.careager.Adapter.ForumUserListAdapter;
 import com.careager.Adapter.ProfileSaleAdapter;
 import com.careager.BE.DealerProfileBE;
+import com.careager.BL.ForumUserListBL;
 import com.careager.Configuration.Util;
 import com.careager.Constant.Constant;
 import com.careager.UI.RecyclerItemClickListener;
 import com.careager.careager.R;
 
-public class ForumUserList extends AppCompatActivity {
+public class ForumUserList extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ForumUserListAdapter objForumUserListAdapter;
 
     RecyclerView recList;
@@ -30,6 +36,10 @@ public class ForumUserList extends AppCompatActivity {
     Toolbar toolbar;
 
     String userID;
+
+    AutoCompleteTextView tvUserList;
+
+    ForumUserListBL objForumUserListBL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +53,9 @@ public class ForumUserList extends AppCompatActivity {
                 new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent intent=new Intent(getApplicationContext(),ForumChat.class);
-                        intent.putExtra("ID",Constant.forumUserID[position]);
-                        intent.putExtra("NAME",Constant.forumUserName[position]);
+                        Intent intent = new Intent(getApplicationContext(), ForumChat.class);
+                        intent.putExtra("ID", Constant.forumUserID[position]);
+                        intent.putExtra("NAME", Constant.forumUserName[position]);
                         startActivity(intent);
 
 
@@ -53,17 +63,59 @@ public class ForumUserList extends AppCompatActivity {
 
                 }));
 
+        tvUserList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+         /* GET DATA FOR SEARCHED KEYWORD*/
+
+        tvUserList.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1 && s.length() <= 10) {
+                    // Toast.makeText(getApplicationContext(),"char:"+s,Toast.LENGTH_LONG).show();
+                        if(Util.isInternetConnection(ForumUserList.this))
+                    new GetSearchUser().execute(userID,s.toString().trim());
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void initialize(){
 
-
+        tvUserList= (AutoCompleteTextView) findViewById(R.id.user_search);
         recList = (RecyclerView) findViewById(R.id.forum_user_list);
         recList.setHasFixedSize(true);
 
         final LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
+
+        objForumUserListBL=new ForumUserListBL();
+
+        tvUserList.setOnItemClickListener(this);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -104,6 +156,14 @@ public class ForumUserList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getApplicationContext(), ForumChat.class);
+        intent.putExtra("ID", Constant.forumUserIDSearch[position]);
+        intent.putExtra("NAME", Constant.forumUserNameSearch[position]);
+        startActivity(intent);
+    }
+
     private class GetForumList extends AsyncTask<String,String,String>{
         @Override
         protected void onPreExecute() {
@@ -130,6 +190,30 @@ public class ForumUserList extends AppCompatActivity {
                 progressDialog.dismiss();
             }
 
+        }
+    }
+
+    private class GetSearchUser extends AsyncTask<String,String,String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            objForumUserListBL.getSearchUserList(params[0],params[1]);
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try{
+            if(Constant.forumUserNameSearch!=null) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, Constant.forumUserNameSearch);
+                adapter.setDropDownViewResource(R.layout.spinner_item);
+                tvUserList.setAdapter(adapter);
+            }}catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            catch (Exception e){
+
+            }
         }
     }
 

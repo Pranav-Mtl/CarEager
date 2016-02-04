@@ -49,6 +49,7 @@ public class TipsAdviceAdapter extends RecyclerView.Adapter<TipsAdviceAdapter.Ti
                 .placeholder(R.drawable.ic_default_loading)
                 .error(R.drawable.ic_default_loading)
                 .into(holder.ivProfile);
+
     }
 
     @Override

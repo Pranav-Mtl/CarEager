@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.careager.BL.SearchServiceBL;
@@ -21,7 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class NearbyMap extends AppCompatActivity implements GoogleMap.OnMarkerClickListener {
+public class NearbyMap extends AppCompatActivity  {
 
     GoogleMap googleMap;
     String location,category;
@@ -36,9 +39,42 @@ public class NearbyMap extends AppCompatActivity implements GoogleMap.OnMarkerCl
         setContentView(R.layout.activity_nearby_map);
         initialize();
 
-        new GetServices().execute(location,category);
+        new GetServices().execute(location, category);
+
+    /*    googleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+                // TODO Auto-generated method stub
+                //Here your code
+                String id[] = marker.getTitle().split(":");
+                startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", id[0]));
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+*/
 
 
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id[] = marker.getTitle().split(":");
+                startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", id[0]));
+
+
+            }
+        });
 
     }
 
@@ -58,11 +94,11 @@ public class NearbyMap extends AppCompatActivity implements GoogleMap.OnMarkerCl
         return super.onOptionsItemSelected(item);
     }
 
-    private void initialize(){
+    private void initialize() {
         googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap)).getMap();
         objSearchServiceBL=new SearchServiceBL();
         location=getIntent().getStringExtra("Location");
-        category=getIntent().getStringExtra("Category");
+        category = getIntent().getStringExtra("Category");
 
         progressDialog=new ProgressDialog(NearbyMap.this);
 
@@ -83,21 +119,23 @@ public class NearbyMap extends AppCompatActivity implements GoogleMap.OnMarkerCl
         googleMap.getUiSettings().setZoomControlsEnabled(false);
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
 
-        googleMap.setOnMarkerClickListener(this);
+        //googleMap.setOnMarkerClickListener(this);
 
 
         //LatLng latlng=new LatLng(Double.valueOf(CreateGameRecord.latitude[0]),Double.valueOf(CreateGameRecord.longitude[0]));
 
     }
 
-    @Override
+   /* @Override
     public boolean onMarkerClick(Marker marker) {
 
         //Toast.makeText(getApplicationContext(),marker.getTitle(),Toast.LENGTH_SHORT).show();
         marker.hideInfoWindow();
-        startActivity(new Intent(getApplicationContext(),Profile.class).putExtra("ID",marker.getTitle()));
+        String id[]=marker.getTitle().split(":");
+        startActivity(new Intent(getApplicationContext(),DealerProfile.class).putExtra("ID",id[0]));
         return false;
     }
+*/
 
     private class GetServices extends AsyncTask<String,String,String>{
         @Override
@@ -121,7 +159,7 @@ public class NearbyMap extends AppCompatActivity implements GoogleMap.OnMarkerCl
                         if(i==0)
                             initializeMap(Constant.serviceLatitude[i],Constant.serviceLongitude[i]);
 
-                        showMarker(Constant.serviceLatitude[i], Constant.serviceLongitude[i],Constant.serviceID[i]);
+                        showMarker(Constant.serviceLatitude[i], Constant.serviceLongitude[i],Constant.serviceID[i]+": "+Constant.serviceName[i],Constant.serviceAddress[i]+"\n Mob. "+Constant.serviceContact[i]);
 
                 }
             }catch (NullPointerException e){
@@ -134,14 +172,54 @@ public class NearbyMap extends AppCompatActivity implements GoogleMap.OnMarkerCl
         }
     }
 
-    public void showMarker(Double Latitude, Double Longitude,String title) {
+    public void showMarker(Double Latitude, Double Longitude,String title,String snippet) {
 
         double latitude = Latitude;
         double longitude = Longitude;
 
         // create marker
          marker = new MarkerOptions().position(
-                new LatLng(latitude, longitude)).title(title);
+                new LatLng(latitude, longitude)).title(title).snippet(snippet);
+        googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            // Use default InfoWindow frame
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
+
+            // Defines the contents of the InfoWindow
+            @Override
+            public View getInfoContents(final Marker marker) {
+
+                // Getting view from the layout file info_window_layout
+                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+
+                // Getting reference to the TextView to set title
+                TextView note = (TextView) v.findViewById(R.id.note);
+                Button btnnote = (Button) v.findViewById(R.id.note_button);
+                TextView noteSnippet = (TextView) v.findViewById(R.id.note_snippet);
+
+                String ttl[] = marker.getTitle().split(":");
+                note.setText(ttl[1]);
+                noteSnippet.setText(marker.getSnippet());
+
+               /* btnnote.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String id[]=marker.getTitle().split(":");
+                        startActivity(new Intent(getApplicationContext(),DealerProfile.class).putExtra("ID",id[0]));
+                    }
+                });*/
+
+                // Returning the view containing InfoWindow contents
+                return v;
+
+            }
+
+        });
+
+
         try{
 
             marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker));

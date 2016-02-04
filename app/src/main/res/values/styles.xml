@@ -44,4 +44,13 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="FacebookLoginButton">
+
+
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+
+
+    </style>
 </resources>

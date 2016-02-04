@@ -17,7 +17,7 @@ public class CarInfoWebView extends AppCompatActivity {
 
     //String url="http://ec2-52-76-48-31.ap-southeast-1.compute.amazonaws.com/careager/model/";
 
-    String url="http://careager.com/careager/blog/carinfo_list_webview/";
+    String url="http://careager.com/blog/carinfo_list_webview/";
 
     String model,ID;
 

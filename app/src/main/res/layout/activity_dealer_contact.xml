@@ -81,6 +81,8 @@
                 android:hint="Contact no."
                 android:inputType="number"
                 android:imeOptions="actionNext"
+                android:maxLength="10"
+
                 />
 
             <EditText

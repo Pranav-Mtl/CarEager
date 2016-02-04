@@ -61,7 +61,6 @@ public class ForumQuestionDetailBL {
             JSONArray jsonArrayObject = (JSONArray) obj;
             JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(0).toString());
             objForumQuestionDetailBE.setTitle(jsonObject.get("title").toString());
-            objForumQuestionDetailBE.setDescription(jsonObject.get("description").toString());
             objForumQuestionDetailBE.setName(jsonObject.get("name").toString());
             objForumQuestionDetailBE.setTimestamp(jsonObject.get("date").toString());
 

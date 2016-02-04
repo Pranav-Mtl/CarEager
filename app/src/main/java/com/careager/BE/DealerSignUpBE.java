@@ -12,11 +12,30 @@ public class DealerSignUpBE implements Serializable {
     private String contact;
     private String password;
     private String location;
+    private String latitude;
+    private String longitude;
     private String state;
     private String dealerCategory;
     private String dealerCompany;
     private String gcmId;
     private String deviceId;
+
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
     public String getGcmId() {
         return gcmId;

@@ -49,7 +49,7 @@ public class ForumQuestionDetail extends AppCompatActivity {
 
     private void initialize(){
         tvTitle= (TextView) findViewById(R.id.forum_detail_title);
-        tvDescription= (TextView) findViewById(R.id.forum_detail_description);
+
         tvPosted= (TextView) findViewById(R.id.forum_detail_posted);
 
         recList = (RecyclerView) findViewById(R.id.forum_question_detail);
@@ -114,7 +114,7 @@ public class ForumQuestionDetail extends AppCompatActivity {
         protected void onPostExecute(String s) {
             try{
                 tvTitle.setText(objForumQuestionDetailBE.getTitle());
-                tvDescription.setText(objForumQuestionDetailBE.getDescription());
+
                 tvPosted.setText("Posted by "+objForumQuestionDetailBE.getName()+" on "+objForumQuestionDetailBE.getTimestamp());
 
                 objForumCommentAdapter=new ForumCommentAdapter(getApplicationContext());

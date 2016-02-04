@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -40,7 +41,7 @@ import com.careager.careager.R;
 
 import java.util.Locale;
 
-public class HomeScreen extends AppCompatActivity {
+public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
 
     ViewPager mViewPager;
     PagerSlidingTabStrip tabs;
@@ -64,6 +65,8 @@ public class HomeScreen extends AppCompatActivity {
 
     int xx,yy;
     View _itemColoured;
+
+    FloatingActionButton btnChat;
 
 
 
@@ -93,7 +96,7 @@ public class HomeScreen extends AppCompatActivity {
                             if (userID != null) {
                                 if (userType != null)
                                     if (!userType.equalsIgnoreCase(Constant.strLoginUser))
-                                        startActivity(new Intent(getApplicationContext(), Profile.class).putExtra("ID", userID));
+                                        startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", userID));
 
                             }
                             else
@@ -107,12 +110,19 @@ public class HomeScreen extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), TipsAndAdvice.class));
                         }
                         else if (position == 4) {
-                            startActivity(new Intent(getApplicationContext(), AddBusiness.class));
+                            startActivity(new Intent(getApplicationContext(), AddBusinessMap.class));
+                        }
+                        else if (position == 5) {
+                            startActivity(new Intent(getApplicationContext(), RoadsideAssistance.class));
                         }
                         else if (position == 6) {
-                            startActivity(new Intent(getApplicationContext(), Settings.class));
+                            startActivity(new Intent(getApplicationContext(), AboutUs.class));
                         }
                         else if (position == 7) {
+                            startActivity(new Intent(getApplicationContext(), Settings.class));
+                        }
+                        else if (position == 8) {
+                            Constant.NAME="Sign in";
                             Util.setSharedPrefrenceValue(getApplicationContext(), Constant.PREFS_NAME, Constant.SP_LOGIN_ID, null);
                             Util.setSharedPrefrenceValue(getApplicationContext(), Constant.PREFS_NAME, Constant.SP_LOGIN_TYPE, null);
                             Intent intent = new Intent(getApplicationContext(), HowItWork.class);
@@ -147,6 +157,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void initialize(){
+        btnChat= (FloatingActionButton) findViewById(R.id.chatFabButton);
         mViewPager= (ViewPager) findViewById(R.id.pager);
         mViewPager.setOffscreenPageLimit(3);
         tabs= (PagerSlidingTabStrip) findViewById(R.id.pager_tab_strip);
@@ -214,8 +225,31 @@ public class HomeScreen extends AppCompatActivity {
 
         objHomeScreenBL=new HomeScreenBL();
 
+        btnChat.setOnClickListener(this);
+
+        if(userID!=null)
+            if(userType!=null)
+                    btnChat.setVisibility(View.VISIBLE);
 
 
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.chatFabButton:
+                if(userType!=null){
+                    if(userType.equalsIgnoreCase(Constant.strLoginUser))
+                        startActivity(new Intent(getApplicationContext(),ForumUserList.class));
+                    else if(userType.equalsIgnoreCase(Constant.strLoginBusiness))
+                        startActivity(new Intent(getApplicationContext(),DealerChatList.class));
+
+                }
+
+                break;
+        }
     }
 
     class CustomPagerAdapter extends FragmentPagerAdapter {

@@ -152,7 +152,7 @@ public class GCMNotificationIntentService extends IntentService {
 
 
         mNotifyBuilder = new NotificationCompat.Builder(this)
-                .setContentTitle("CarEager")
+                .setContentTitle(name)
                 .setContentText(messagees)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(messagees))
                 .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher))
@@ -215,7 +215,7 @@ public class GCMNotificationIntentService extends IntentService {
 
 
         mNotifyBuilder = new NotificationCompat.Builder(this)
-                .setContentTitle("CarEager")
+                .setContentTitle(name)
                 .setContentText(messagees)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(messagees))
                 .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher))
@@ -306,7 +306,7 @@ public class GCMNotificationIntentService extends IntentService {
     {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
         Date currentLocalTime = cal.getTime();
-        SimpleDateFormat date = new SimpleDateFormat("dd:MM:yyyy hh:mm a");
+        SimpleDateFormat date = new SimpleDateFormat("hh:mm a dd:MM:yyyy");
 // you can get seconds by adding  "...:ss" to it
         date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         localTime = date.format(currentLocalTime);

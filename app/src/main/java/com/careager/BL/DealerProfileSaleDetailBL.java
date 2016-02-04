@@ -106,6 +106,8 @@ public class DealerProfileSaleDetailBL  {
             objDealerProfileSaleDetailBE.setDealerLocation(jsonObject.get("location").toString());
             objDealerProfileSaleDetailBE.setDealerOverview(jsonObject.get("overview").toString());
             objDealerProfileSaleDetailBE.setDealerRating(jsonObject.get("careager_rating").toString());
+            objDealerProfileSaleDetailBE.setDealerEmail(jsonObject.get("email").toString());
+            objDealerProfileSaleDetailBE.setDealerPhone(jsonObject.get("contact_no").toString());
 
         }
         catch (Exception e){

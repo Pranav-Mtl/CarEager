@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/whiteColor"
             android:paddingLeft="10dp"
-            android:textSize="@dimen/drawer_text_size"
+            android:textSize="@dimen/drawer_header_size"
             android:text="Name"
             android:textStyle="bold"
 

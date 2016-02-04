@@ -8,9 +8,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
@@ -29,13 +31,31 @@ import com.careager.BL.UserSignupBL;
 import com.careager.Configuration.Util;
 import com.careager.Constant.Constant;
 import com.careager.careager.R;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import java.io.IOException;
+import org.json.JSONObject;
 
-public class UserSignup extends AppCompatActivity implements View.OnClickListener {
+import java.io.IOException;
+import java.util.Arrays;
+
+public class UserSignup extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
 
     Button btnDone;
     EditText etEmail,etMobile,etPassword,etConfirmPassword,etName;
@@ -49,12 +69,25 @@ public class UserSignup extends AppCompatActivity implements View.OnClickListene
     UserSignupBL objUserSignupBL;
     ProgressDialog mProgressDialog;
 
+    private GoogleApiClient mGoogleApiClient;
+
+    private static final String TAG = "SignInActivity";
+
+
+
     String userType;
+
+    LoginButton btnFB;
+    CallbackManager callbackManager;
+    private static final int RC_SIGN_IN = 9001;
+
+    SignInButton signInButton;
 
     int xx,yy;
 
     String deviceId;
     GoogleCloudMessaging gcmObj;
+
 
     Context applicationContext;
     String gcmID;
@@ -64,8 +97,58 @@ public class UserSignup extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_user_signup);
         initialize();
+
+
+        btnFB.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                // Application code
+                                Log.v("LoginActivity", response.toString());
+                                try {
+                                    Log.v("email", object.getString("email"));
+
+                                    if (Util.isInternetConnection(UserSignup.this))
+                                        new ValidateUserSocial().execute(object.getString("email"),object.getString("name"), gcmID, deviceId);
+
+                                    LoginManager.getInstance().logOut();
+
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender, birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+                System.out.println("LoginResult" + loginResult);
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                System.out.println("Cancel");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                exception.printStackTrace();
+            }
+        });
 
     }
 
@@ -102,6 +185,46 @@ public class UserSignup extends AppCompatActivity implements View.OnClickListene
         etPassword= (EditText) findViewById(R.id.signup_password);
         etConfirmPassword= (EditText) findViewById(R.id.signup_conf_password);
         llSignIn= (LinearLayout) findViewById(R.id.signup_signin);
+
+        btnFB = (LoginButton) findViewById(R.id.fb_login_button);
+
+
+
+        btnFB.setReadPermissions(Arrays.asList("public_profile, email, user_birthday"));
+        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+
+        signInButton.setOnClickListener(this);
+
+        /* fb initialization*/
+
+        LoginManager.getInstance().logOut();
+        callbackManager = CallbackManager.Factory.create();
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+
+
+        /* google initialization*/
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setScopes(gso.getScopeArray());
+
+        setGooglePlusButtonText(signInButton,"Sign up");
+
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
 
         etMobile.setText("+91", TextView.BufferType.EDITABLE);
         etMobile.setSelection(etMobile.getText().length());
@@ -149,6 +272,9 @@ public class UserSignup extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.signup_signin:
                 startActivity(new Intent(getApplicationContext(),UserLogin.class).putExtra("UserType",userType));
+                break;
+            case R.id.sign_in_button:
+                signIn();
                 break;
         }
     }
@@ -200,6 +326,11 @@ public class UserSignup extends AppCompatActivity implements View.OnClickListene
         }
 
         return flagDetails;
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
 
@@ -454,5 +585,120 @@ public class UserSignup extends AppCompatActivity implements View.OnClickListene
             }
         }.execute(null, null, null);
     }
+
+
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+
+            Log.d("GOOGLE API",acct.getEmail());
+
+            new ValidateUserSocial().execute(acct.getEmail(), acct.getDisplayName(),gcmID,deviceId);
+            //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
+            //updateUI(true);
+        } else {
+            // Signed out, show unauthenticated UI.
+            //updateUI(false);
+        }
+    }
+    // [END handleSignInResult]
+
+    private void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    private void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
+        }
+    }
+
+
+    private class ValidateUserSocial extends AsyncTask<String,String,String>{
+
+        @Override
+        protected void onPreExecute() {
+            mProgressDialog.show();
+            mProgressDialog.setMessage("Authenticating...");
+            mProgressDialog.setCancelable(false);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String result=objUserSignupBL.insertSignUpDetailsSocial(params[0],params[1],params[2],params[3],getApplicationContext());
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try{
+                Log.d("REsponse",s);
+                if(Constant.WS_RESPONSE_SUCCESS.equalsIgnoreCase(s)){
+                    Util.setSharedPrefrenceValue(getApplicationContext(),Constant.PREFS_NAME,Constant.SP_LOGIN_TYPE,userType);
+                    startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                }
+                else {
+                    Snackbar snack = Snackbar
+                            .make(findViewById(R.id.user_signup_root),
+                                    getResources().getString(R.string.failure_signup_message),
+                                    Snackbar.LENGTH_LONG).setText(getResources().getString(R.string.failure_signup_message));
+                    ViewGroup group = (ViewGroup) snack.getView();
+                    TextView tv = (TextView) group.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.WHITE);
+                    group.setBackgroundColor(getResources().getColor(R.color.redColor));
+                    snack.show();
+
+                }
+            }
+            catch (NullPointerException e){
+
+            }
+            catch (Exception e){
+
+            }
+            finally {
+                mProgressDialog.dismiss();
+            }
+        }
+    }
+
+
+    protected void setGooglePlusButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                return;
+            }
+        }
+    }
+
 }
 

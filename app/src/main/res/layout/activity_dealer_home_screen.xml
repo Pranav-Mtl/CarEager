@@ -22,7 +22,7 @@
                 app:theme="@style/Toolbar_Theme"
                 android:elevation="4dp"
                 android:background="@color/toolbarBG"
-                app:layout_scrollFlags="scroll|enterAlways"
+
                 android:minHeight="?attr/actionBarSize">
 
 
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@color/blackColor"
-                app:pstsUnderlineColor="@color/tabUnderLineColor"
+                app:pstsUnderlineColor="@color/blackColor"
                 app:pstsIndicatorColor="@color/tabSlidingIndicator"
 
                 />
@@ -57,7 +57,21 @@
             >
         </android.support.v4.view.ViewPager>
 
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/chatFabButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_chat"
+            app:backgroundTint="@color/blackColor"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            android:visibility="gone"
+            />
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -68,4 +82,6 @@
         android:layout_gravity="left"
         android:background="@drawable/drawer_item_bg"
         android:scrollbars="vertical"/>
+
+
 </android.support.v4.widget.DrawerLayout>

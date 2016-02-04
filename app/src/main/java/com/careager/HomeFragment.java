@@ -119,7 +119,7 @@ DrawerAdapter drawerAdapter;
 
         ViewPager pager = mContainer.getViewPager();
         //ViewPager pager=(ViewPager) view.findViewById(R.id.pager);
-        pager.setPageTransformer(true, new BigImage());
+        //pager.setPageTransformer(true, new BigImage());
         progressDialog=new ProgressDialog(getActivity());
 
         mContainer=new PagerContainer(getActivity());
@@ -163,9 +163,15 @@ DrawerAdapter drawerAdapter;
         tvCarLocation.setAdapter(new GooglePlacesAutocompleteAdapter(getActivity(), R.layout.gender_spinner_item));
         tvServiceLocation.setAdapter(new GooglePlacesAutocompleteAdapter(getActivity(), R.layout.gender_spinner_item));
 
-        ArrayAdapter<String> adapterSpn=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,Constant.homeCategory);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategory.setAdapter(adapterSpn);
+        try {
+            ArrayAdapter<String> adapterSpn = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, Constant.homeCategory);
+            adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerCategory.setAdapter(adapterSpn);
+        }catch (NullPointerException e){
+
+        }catch (Exception e){
+
+        }
 
 
         //tvLocation.showDropDown();

@@ -58,4 +58,24 @@ public class UserSignupBL {
 
         return status;
     }
+
+
+    public String insertSignUpDetailsSocial(String email,String name,String gcm,String device,Context context){
+        mContext=context;
+
+        String result=callWsUrlSocial(email, name, gcm, device);   // call webservice
+        String status=validate(result);             // parse json
+        return status;
+    }
+
+
+    private String callWsUrlSocial(String email,String name,String gcm,String device){
+
+       //http://careager.com/user_webservices/social_signup?name=sandeep&email=sandeepdnp@gmail.com&gcm_id=323&device_id=490934890439
+
+        String URL="name="+name+"&email="+email+"&gcm_id="+gcm+"&device_id="+device;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_USER,URL, Constant.WS_SOCIAL_SIGNUP);
+        return txtJson;
+    }
+
 }
