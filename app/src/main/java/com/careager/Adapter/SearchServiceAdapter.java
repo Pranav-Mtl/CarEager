@@ -60,7 +60,7 @@ public class SearchServiceAdapter extends RecyclerView.Adapter<SearchServiceAdap
         holder.tvName.setText(Constant.serviceName[position]);
 
         Picasso.with(mContext)
-                .load(Constant.serviceURL+Constant.serviceImage[position])
+                .load(Constant.serviceURL+Constant.serviceCover[position])
                 .placeholder(R.drawable.ic_default_loading)
                 .error(R.drawable.ic_default_loading)
                 .into(holder.ivProfile);

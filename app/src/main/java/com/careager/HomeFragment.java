@@ -142,8 +142,9 @@ DrawerAdapter drawerAdapter;
 
         tvMinBudget = (TextView) view.findViewById(R.id.minValue);
         tvMaxBudget = (TextView) view.findViewById(R.id.maxValue);
+        final TextView tvMaxText=(TextView) view.findViewById(R.id.max_value_text);
         // create RangeSeekBar as Integer range between 20 and 75
-        RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(1,150,getActivity());
+        RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(1,90,getActivity());
         seekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
@@ -151,6 +152,13 @@ DrawerAdapter drawerAdapter;
 
 
                 tvMinBudget.setText(minValue.toString());
+                if(maxValue==90){
+                    tvMaxText.setText("L & above");
+                }
+                else
+                {
+                    tvMaxText.setText("L");
+                }
                 tvMaxBudget.setText(maxValue.toString());
 
             }
@@ -183,9 +191,13 @@ DrawerAdapter drawerAdapter;
         else
             userStatus=Constant.USER_LOGIN;
 
-        ArrayAdapter<String> adapterVehicleType = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,Constant.carName);
-        adapterVehicleType.setDropDownViewResource(R.layout.spinner_item);
-        spinnerBrand.setAdapter(adapterVehicleType);
+        try {
+            ArrayAdapter<String> adapterVehicleType = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, Constant.carName);
+            adapterVehicleType.setDropDownViewResource(R.layout.spinner_item);
+            spinnerBrand.setAdapter(adapterVehicleType);
+        }catch (Exception e){
+
+        }
 
         spinnerBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

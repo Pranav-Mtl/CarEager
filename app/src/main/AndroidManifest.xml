@@ -160,8 +160,8 @@
             android:label="" />
         <activity
             android:name="com.careager.ArticleQuestionDetail"
-            android:windowSoftInputMode="adjustPan"
-            android:label="" />
+            android:label=""
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.careager.TipsAndAdvice"
             android:label="" />
@@ -204,7 +204,13 @@
         <activity
             android:name="com.careager.DealerChatList"
             android:label="" />
-        <activity android:name="com.careager.ClaimBusinessPre"
+        <activity
+            android:name="com.careager.ClaimBusinessPre"
+            android:label="" />
+        <activity
+            android:name="com.careager.ForumAskQuestion"
+            android:label="" />
+        <activity android:name="com.careager.DealerReview"
             android:label=""
             ></activity>
     </application>

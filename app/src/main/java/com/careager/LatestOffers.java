@@ -2,6 +2,7 @@ package com.careager;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.careager.BL.LatestOffersBL;
@@ -102,7 +104,7 @@ public class LatestOffers extends AppCompatActivity {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
 
 
             inflater = (LayoutInflater) context
@@ -124,6 +126,20 @@ public class LatestOffers extends AppCompatActivity {
             tvTitle.setText(Constant.carOfferTitle[position]);
             tvOffer.setText(Constant.carOffer[position]);
             tvPosted.setText("Posted by "+Constant.carOfferPosted[position]);
+
+            imgPager.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(), ProfileSaleDetail.class).putExtra("SaleID", Constant.carOfferID[position]));
+                }
+            });
+
+            tvPosted.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", Constant.carOfferShowroomID[position]));
+                }
+            });
 
             ((ViewPager) container).addView(itemView);
 
@@ -163,7 +179,7 @@ public class LatestOffers extends AppCompatActivity {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container,final int position) {
 
 
             inflater = (LayoutInflater) context
@@ -175,6 +191,8 @@ public class LatestOffers extends AppCompatActivity {
 
             tvOffer= (TextView) itemView.findViewById(R.id.showroom_offer);
 
+            RelativeLayout rlMain= (RelativeLayout) itemView.findViewById(R.id.ll_showroomoffer);
+
 
             Picasso.with(context)
                     .load(Constant.showroomOfferBaseURL + Constant.showroomOfferImage[position])
@@ -183,6 +201,14 @@ public class LatestOffers extends AppCompatActivity {
                     .into(imgPager);
 
             tvOffer.setText(Constant.showroomOffer[position]);
+
+            rlMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", Constant.showroomOfferID[position]));
+                }
+            });
+
 
 
             ((ViewPager) container).addView(itemView);
@@ -225,7 +251,7 @@ public class LatestOffers extends AppCompatActivity {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container,final int position) {
 
 
             inflater = (LayoutInflater) context
@@ -238,6 +264,9 @@ public class LatestOffers extends AppCompatActivity {
             tvOffer= (TextView) itemView.findViewById(R.id.careager_offer);
 
 
+
+
+
             Picasso.with(context)
                     .load(Constant.carEagerOfferBaseURL + Constant.carEagerOfferImage[position])
                     .placeholder(R.drawable.ic_default_loading)
@@ -245,6 +274,7 @@ public class LatestOffers extends AppCompatActivity {
                     .into(imgPager);
 
             tvOffer.setText(Constant.carEagerOffer[position]);
+
 
 
             ((ViewPager) container).addView(itemView);

@@ -2,6 +2,7 @@ package com.careager.Constant;
 
 import com.careager.careager.R;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -34,12 +35,12 @@ public class Constant {
     public static int CategoryImageWidth=150;
     public static int CategoryImageHeight=150;
 
-    public static String categoryDesign="Design";
-    public static String categoryElectronics="Electronics";
-    public static String categoryRepair="Repair";
-    public static String categoryChassis="Chassis And Suspension System";
-    public static String categoryEngine="Engine And Fuel";
-    public static String categoryTransmission="Transmission System";
+    public static String categoryDesign="Car Queries";
+    public static String categoryElectronics="Car Reviews";
+    public static String categoryRepair="Upcoming -or- Latest";
+    public static String categoryChassis="Engineering/Technology";
+    public static String categoryEngine="CarEager official";
+
 
 
 
@@ -48,7 +49,7 @@ public class Constant {
     public static String WS_DEALER_SIGNUP="dealer_register";
     public static String WS_DEALER_SIGNIN="dealer_login";
     public static String WS_USER_SIGNUP="user_register";
-    public static String WS_SOCIAL_SIGNUP="social_signup";
+    public static String WS_SOCIAL_SIGNUP="checksociallogin";
     public static String WS_USER_SIGNIN="user_login";
     public static String WS_USER_SIGNIN_SOCIAL="checksociallogin";
     public static String WS_DEALER_PROFILE="profile";
@@ -60,6 +61,7 @@ public class Constant {
     public static String WS_CATEGORY="signup_category";
     public static String WS_LOGO="brand_logo";
     public static String WS_USER_DETAIL="user_detail";
+    public static String WS_LOGOUT="logout";
     public static String WS_MODEL="model";
     public static String WS_SEARCH_SERVICE_LIST="service_search";
     public static String WS_LATEST_OFFERS="latest_offers_app";
@@ -81,11 +83,16 @@ public class Constant {
     public static String WS_ARTICLE_DETAIL="article_detail";
     public static String WS_TIPS_ADVICE="tip_advice";
     public static String WS_ADD_BUSINESS="add_business";
-    public static String WS_REQUEST_SERVICE="request_service";
+    public static String WS_REQUEST_SERVICE="request_quote";
     public static String WS_FORUM_CATEGORY="forum_categories";
+    public static String WS_FORUM_QUESTION_CATEGORY="forum_category";
+    public static String WS_FORUM_SEND_QUESTION="ask_question";
     public static String WS_SETTINGS="setting";
     public static String WS_UPDATE_SETTINGS="update_setting";
     public static String WS_UPDATE_COMMENT="update_coment";
+    public static String WS_VERIFIED_BUSINESS="add_business_validation";
+
+    public static String WS_DEALER_REVIEW="business_rating";
 
     public static String WS_ROADSIDE="roadside_assistance";
 
@@ -117,13 +124,13 @@ public class Constant {
 
     /* MENU ITEMS AFTER DEALER SIGN IN*/
 
-    public static String TITLES_LOGIN[] = {"Forum","Latest Offers","Tips & Advice","Add Local Business","Roadside Assistance","About us","Settings","Logout"};
+    public static String TITLES_LOGIN[] = {"Offers & Discounts","Tips & Advice","Add Local Business","Roadside Assistance","About us","Settings","Logout"};
 
-    public static int ICONS[] = {R.drawable.ic_side_forum,R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about,R.drawable.ic_side_settings,R.drawable.ic_side_logout};
+    public static int ICONS[] = {R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about,R.drawable.ic_side_settings,R.drawable.ic_side_logout};
 
-    public static String TITLES_LOGOUT[] = {"Forum","Latest Offers","Tips & Advice","Add Local Business","Roadside Assistance","About us"};
+    public static String TITLES_LOGOUT[] = {"Offers & Discounts","Tips & Advice","Add Local Business","Roadside Assistance","About us"};
 
-    public static int ICONS_LOGOUT[] = {R.drawable.ic_side_forum,R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about};
+    public static int ICONS_LOGOUT[] = {R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about};
 
      /* MENU ITEMS AFTER DEALER SIGN IN*/
 
@@ -200,6 +207,8 @@ public class Constant {
     public static String serviceOverview[];
     public static Double serviceLatitude[];
     public static Double serviceLongitude[];
+    public static String  serviceCover[];
+    public static String  serviceCategory[];
 
     /* Latest offer  list */
     public static String offerBaseURL;
@@ -218,6 +227,7 @@ public class Constant {
     public static String carOffer[];
     public static String carOfferPosted[];
     public static String carOfferTitle[];
+    public static String carOfferShowroomID[];
 
     public static String showroomOfferBaseURL;
     public static String showroomOfferID[];
@@ -330,6 +340,9 @@ public class Constant {
     public static String chassisTitle[];
     public static String chassisName[];
     public static String chassisDate[];
+
+
+    public static ArrayList categoryQuestion;
 
 
 }

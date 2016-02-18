@@ -155,7 +155,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
                                         Log.v("email", object.getString("email"));
 
                                         if(Util.isInternetConnection(UserLogin.this))
-                                        new ValidateUserSocial().execute(object.getString("email"),gcmID,deviceId);
+                                        new ValidateUserSocial().execute(object.getString("email"),gcmID,deviceId,object.getString("name"));
 
                                         LoginManager.getInstance().logOut();
 
@@ -417,7 +417,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
 
             @Override
             protected String doInBackground(String... params) {
-                String result=objUserLoginBL.validateSigninDetailsSocial(params[0],params[1],params[2], getApplicationContext());
+                String result=objUserLoginBL.validateSigninDetailsSocial(params[0],params[1],params[2],params[3], getApplicationContext());
                 return result;
             }
 
@@ -511,7 +511,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
 
                 Log.d("GOOGLE API",acct.getEmail());
 
-                new ValidateUserSocial().execute(acct.getEmail(),gcmID,deviceId);
+                new ValidateUserSocial().execute(acct.getEmail(),gcmID,deviceId,acct.getDisplayName());
                 //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
                 //updateUI(true);
             } else {

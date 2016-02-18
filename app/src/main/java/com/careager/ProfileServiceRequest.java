@@ -48,7 +48,7 @@ public class ProfileServiceRequest extends AppCompatActivity implements View.OnC
 
     private int minute;
 
-    String strName,strEmail,strPhone,strDescription,strVehicle,strDate;
+    String strName,strEmail,strPhone,strDescription,strVehicle,strDate="";
 
     ProgressDialog progressDialog;
 

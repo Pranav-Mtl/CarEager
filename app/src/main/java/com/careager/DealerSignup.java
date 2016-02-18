@@ -240,15 +240,15 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onPostExecute(String s) {
             try {
-                if(Constant.WS_RESPONSE_SUCCESS.equalsIgnoreCase(s)){
+                String ss[]=s.split(",");
+                if(Constant.WS_RESPONSE_SUCCESS.equalsIgnoreCase(ss[0])){
                     Util.setSharedPrefrenceValue(getApplicationContext(),Constant.PREFS_NAME,Constant.SP_LOGIN_TYPE,Constant.strLoginBusiness);
                     startActivity(new Intent(getApplicationContext(), HomeScreen.class));
-
                 }
                 else {
                     Snackbar snack = Snackbar.make(findViewById(R.id.login_root),
-                            getResources().getString(R.string.failure_signup_message),
-                            Snackbar.LENGTH_LONG).setText(getResources().getString(R.string.failure_signup_message)).setActionTextColor(getResources().getColor(R.color.redColor));
+                            ss[1],
+                            Snackbar.LENGTH_LONG).setText(ss[1]).setActionTextColor(getResources().getColor(R.color.redColor));
                     ViewGroup group = (ViewGroup) snack.getView();
                     TextView tv = (TextView) group.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.WHITE);

@@ -59,6 +59,9 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
     RecyclerView recList;
 
     ImageButton btnShare,btnBusinessLogo;
+    ImageView ivVerified;
+
+    ImageButton btnRateDealer;
 
     DealerProfileBL objDealerProfileBL;
     DealerProfileBE objDealerProfileBE;
@@ -117,6 +120,8 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
         llTopMain= (ImageView) findViewById(R.id.ll_top_main);
         btnShare= (ImageButton) findViewById(R.id.profile_btn_share);
         btnBusinessLogo= (ImageButton) findViewById(R.id.profile_btn_business_logo);
+        btnRateDealer= (ImageButton) findViewById(R.id.profile_review_btn);
+        ivVerified= (ImageView) findViewById(R.id.dealer_verified);
 
         mContainer = (GalleryPagerContainer) findViewById(R.id.pager_container_gallery);
 
@@ -140,6 +145,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
         btnShare.setOnClickListener(this);
         btnBusinessLogo.setOnClickListener(this);
         mContainer.setOnClickListener(this);
+        btnRateDealer.setOnClickListener(this);
 
         recList.setHasFixedSize(true);
 
@@ -162,6 +168,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
                 if(userType.equalsIgnoreCase(Constant.strLoginUser)){
                     if(!userID.equalsIgnoreCase(profileID))
                         btnChat.setVisibility(View.VISIBLE);
+                        btnRateDealer.setVisibility(View.VISIBLE);
                 }
 
         btnChat.setOnClickListener(this);
@@ -205,7 +212,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(getApplicationContext(), ProfileProduct.class).putExtra("ID", profileID));
                 break;
             case R.id.profile_insurance:
-                startActivity(new Intent(getApplicationContext(), DealerContact.class).putExtra("CategoryName", "Insurance"));
+                startActivity(new Intent(getApplicationContext(), DealerContact.class).putExtra("CategoryName", "Insurance").putExtra("ID", profileID));
                 break;
             case R.id.profile_call:
                 try {
@@ -240,7 +247,11 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
                 startActivity(intentChat);
 
                 break;
-            case R.id.pager_container_gallery:
+            case R.id.profile_review_btn:
+                Intent intentReview=new Intent(getApplicationContext(),DealerReview.class);
+                intentReview.putExtra("ID",profileID);
+                startActivityForResult(intentReview, 2);
+                break;
 
         }
     }
@@ -297,6 +308,14 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
                 objDealerRatingAdapter=new DealerRatingAdapter(getApplicationContext());
                 recList.setAdapter(objDealerRatingAdapter);
 
+                if(objDealerProfileBE.getApproved().equalsIgnoreCase("0")){
+                    ivVerified.setVisibility(View.GONE);
+                }
+                else
+                {
+                    ivVerified.setVisibility(View.VISIBLE);
+                }
+
 
                 for(int i=0;i<Constant.categoryTab.length;i++){
                     if(Constant.categoryTab[i].equalsIgnoreCase(Constant.tagSales))
@@ -314,20 +333,25 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
                 //ViewPager pager=(ViewPager) view.findViewById(R.id.pager);
                 mContainer=new GalleryPagerContainer(getApplicationContext());
 
+                try {
+                    GalleryPageAdapter adapter = new GalleryPageAdapter(getApplicationContext());
+                    pager.setAdapter(adapter);
+                    pager.setOffscreenPageLimit(adapter.getCount());
+                    //A little space between pages
+                    pager.setPageMargin(5);
+                    //If hardware acceleration is enabled, you should also remove
+                    // clipping on the pager for its children.
+                    pager.setClipChildren(false);
+                    pager.setPadding(5, 0, 0, 0);
 
-                GalleryPageAdapter adapter=new GalleryPageAdapter(getApplicationContext());
-                pager.setAdapter(adapter);
-                pager.setOffscreenPageLimit(adapter.getCount());
-                //A little space between pages
-                pager.setPageMargin(5);
-                //If hardware acceleration is enabled, you should also remove
-                // clipping on the pager for its children.
-                pager.setClipChildren(false);
-                pager.setPadding(5,0,0,0);
+                    int size = adapter.getCount();
+                    if (size == 0) {
+                        llPhotos.setVisibility(View.GONE);
+                    }
+                }catch (NullPointerException e){
 
-                int size=adapter.getCount();
-                if(size==0){
-                    llPhotos.setVisibility(View.GONE);
+                }catch (Exception e){
+
                 }
 
 
@@ -341,7 +365,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
             }
             catch (NullPointerException e){
                 e.printStackTrace();
-                showDialogResponse(DealerProfile.this);
+                //showDialogResponse(DealerProfile.this);
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -606,5 +630,14 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
         i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(path)));
         i.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"http://tinyurl.com/careager");
         startActivity(i);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode==RESULT_OK){
+            new GetProfileData().execute(profileID);
+        }
     }
 }

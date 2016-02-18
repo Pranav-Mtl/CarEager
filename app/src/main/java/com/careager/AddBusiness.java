@@ -26,6 +26,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
@@ -116,7 +117,7 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
     RelativeLayout rlCover;
 
 
-
+    String userID;
 
     Button btnDone;
 
@@ -134,6 +135,12 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
     private String selectCover="Business Cover";
 
     ImageView ivDP,ivCOVER;
+    TextView tvMessage;
+
+    String textBefore="This section is for adding any local car business on CarEager.\n" +
+            "But if you are owner of a business, please visit  ";
+    String textLinked=" “ BUSINESS SIGNUP ” ";
+    String textAfter="  page to add your business on CarEager for free.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +148,22 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_add_business);
 
         initialize();
+
+        String text = "<font color=#ff0000> <u> "+textLinked+" </u></font>";
+
+        tvMessage.setText(Html.fromHtml(textBefore + text+ textAfter));
+
+        tvMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userID==null){
+                    startActivity(new Intent(getApplicationContext(), HowItWork.class));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Sorry you are already Logged In,Please logout first.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         if (Util.isInternetConnection(AddBusiness.this))
             new GetCategory().execute();
@@ -182,6 +205,7 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
         rlCover= (RelativeLayout) findViewById(R.id.rl_business_cover);
         ivDP= (ImageView) findViewById(R.id.business_dp);
         ivCOVER= (ImageView) findViewById(R.id.business_cover);
+        tvMessage= (TextView) findViewById(R.id.tv_top_message);
 
 
         spnCategory = (Spinner) findViewById(R.id.business_category_list);
@@ -195,7 +219,7 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
 
         prgDialog=new ProgressDialog(AddBusiness.this);
 
-
+        userID=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_ID);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -287,24 +311,24 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
                 else if(states.equalsIgnoreCase("Select State")){
                     Toast.makeText(getApplicationContext(), "Select state", Toast.LENGTH_SHORT).show();
                 }
+                else if(etPhone.getText().toString().length()==0){
+                    etPhone.setError("Required");
+                }
                 else
                     if(Util.isInternetConnection(AddBusiness.this)){
-                        if(imgPath!=null){
-                            params.put("name",name);
-                            params.put("email",etEmail.getText().toString());
-                            params.put("category",spn);
-                            params.put("company",company);
-                            params.put("state",states);
-                            params.put("contact_no",etPhone.getText().toString());
-                            params.put("lat",lat);
-                            params.put("lng",longt);
-                            params.put("location",address);
-                            uploadImage();
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), "Select cover image", Toast.LENGTH_SHORT).show();
-                        }
+
+                        params.put("name",name);
+                        params.put("email",etEmail.getText().toString());
+                        params.put("category",spn);
+                        params.put("company",company);
+                        params.put("state",states);
+                        params.put("contact_no",etPhone.getText().toString());
+                        params.put("lat",lat);
+                        params.put("lng",longt);
+                        params.put("location", address);
+
+                        new VerifiedBusiness().execute(name,etEmail.getText().toString(),etPhone.getText().toString());
+
                     }
 
                     //new AddBuss().execute(name, etEmail.getText().toString(), spn, etPhone.getText().toString(), lat, longt,address);
@@ -342,8 +366,6 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String s) {
             try {
-
-
                 String status = "";
                 JSONParser jsonP = new JSONParser();
                 try {
@@ -603,6 +625,60 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
 
 
         dialog.show();
+    }
+
+
+    private class VerifiedBusiness extends AsyncTask<String,String,String>{
+        @Override
+        protected void onPreExecute() {
+            progressDialog.show();
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String URL="name="+params[0]+"&email="+params[1]+"&contact_no="+params[2];
+            String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_VERIFIED_BUSINESS);
+            return txtJson;
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONParser jsonP=new JSONParser();
+
+                    Object obj =jsonP.parse(s);
+                    JSONArray jsonArrayObject = (JSONArray) obj;
+                    JSONObject jsonObject=(JSONObject)jsonP.parse(jsonArrayObject.get(0).toString());
+                    String status=jsonObject.get("status").toString();
+
+                    if(status.equalsIgnoreCase(Constant.WS_RESPONSE_SUCCESS)){
+                        if (imgPath != null && !imgPath.isEmpty()) {
+                            uploadImage();
+                            // When Image is not selected from Gallery
+                        } else {
+                            params.put("cover_filename", "");
+                            params.put("cover_image", "");
+                            triggerImageUpload();
+
+                        }
+
+                    }
+                    else {
+                        String message=jsonObject.get("message").toString();
+                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (Exception ex) {
+                    ex.getLocalizedMessage();
+                }
+            finally {
+                progressDialog.dismiss();
+            }
+
+        }
     }
 
     public void loadImagefromGallery(View view) {
@@ -886,9 +962,10 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
             encodeImagetoString();
             // When Image is not selected from Gallery
         } else {
+
             Toast.makeText(
                     getApplicationContext(),
-                    "You must select image from gallery before you try to upload",
+                    "You must select cover image",
                     Toast.LENGTH_LONG).show();
         }
     }

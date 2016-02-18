@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textAllCaps="true"
-                android:layout_gravity="center"
+                android:layout_gravity="start"
                 android:drawablePadding="5dp"
                 android:textColor="@color/toolbarTextColor"
                 android:text=""
@@ -44,9 +44,16 @@
                 android:layout_marginRight="10dp"
                 >
                 <ImageButton
+                    android:id="@+id/profile_review_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_side_rate"
+                    />
+                <ImageButton
                     android:id="@+id/profile_btn_business_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:background="@drawable/ic_claim_logo"
                     />
                 <ImageButton
@@ -113,6 +120,7 @@
                 android:layout_alignParentLeft="true"
                 />
                     <ImageView
+                        android:id="@+id/dealer_verified"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/ic_verified"
@@ -206,6 +214,7 @@
                             android:layout_marginTop="5dp"
                             android:textSize="@dimen/small_text_Size"
                             />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -217,8 +226,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:padding="5dp"
+                android:gravity="end"
+                android:padding="10dp"
                 >
 
               <!--  <TextView
@@ -272,7 +281,22 @@
                     android:progressDrawable="@drawable/ratingbar_customized"
                     android:isIndicator="false"/>
 
-
+                <!--<Button
+                    android:id="@+id/profile_review_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/customized_button"
+                    android:layout_gravity="end"
+                    android:paddingLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Rate this Dealer"
+                    android:textAllCaps="false"
+                    android:visibility="visible"
+                    android:textColor="@color/whiteColor"
+                    android:minHeight="@dimen/button_min_height"
+                    />-->
             </LinearLayout>
         </LinearLayout>
 
@@ -503,19 +527,9 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"/>
 
-   <!-- <Button
-        android:id="@+id/profile_chat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/customized_flat_button"
-        android:minHeight="@dimen/button_min_height"
-        android:text="Start Chat"
-        android:textAllCaps="false"
-        android:visibility="gone"
-        android:textColor="@color/whiteColor"
-        />-->
+
     </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>
 
 

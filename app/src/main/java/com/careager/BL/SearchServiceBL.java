@@ -68,6 +68,8 @@ public class SearchServiceBL {
             Constant.serviceOverview=new String[jsonArrayObject.size()];
             Constant.serviceLatitude=new Double[jsonArrayObject.size()];
             Constant.serviceLongitude=new Double[jsonArrayObject.size()];
+            Constant.serviceCover=new String[jsonArrayObject.size()];
+            Constant.serviceCategory=new String[jsonArrayObject.size()];
 
             for(int i=0;i<jsonArrayObject.size();i++){
                 JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
@@ -77,9 +79,10 @@ public class SearchServiceBL {
                 Constant.serviceName[i]=jsonObject.get("name").toString();
                 Constant.serviceContact[i]=jsonObject.get("contact_no").toString();
                 Constant.serviceOverview[i]=jsonObject.get("overview").toString();
+                Constant.serviceCover[i]=jsonObject.get("cover").toString();
                 Constant.serviceLatitude[i]=Double.valueOf(jsonObject.get("latitude").toString());
                 Constant.serviceLongitude[i]=Double.valueOf(jsonObject.get("longitude").toString());
-
+                Constant.serviceCategory[i]=jsonObject.get("category").toString();
 
             }
 

@@ -21,6 +21,8 @@ import com.careager.BL.FilterBL;
 import com.careager.careager.R;
 import com.efor18.rangeseekbar.RangeSeekBar;
 
+import org.w3c.dom.Text;
+
 public class UserFilter extends AppCompatActivity implements View.OnClickListener {
 
     FilterBL objFilterBL;
@@ -103,6 +105,7 @@ public class UserFilter extends AppCompatActivity implements View.OnClickListene
 
         min = (TextView) findViewById(R.id.minValue);
         max = (TextView) findViewById(R.id.maxValue);
+        final TextView tvMaxText=(TextView) findViewById(R.id.filter_max_text);
 
         rbNew= (RadioButton) findViewById(R.id.filter_new_car);
         rbOld= (RadioButton) findViewById(R.id.filter_old_car);
@@ -110,7 +113,7 @@ public class UserFilter extends AppCompatActivity implements View.OnClickListene
         intent=getIntent();
         objFilterBE= (FilterBE) intent.getSerializableExtra("FilterBE");
         // create RangeSeekBar as Integer range between 20 and 75
-        RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(1,150, this);
+        RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(1,90, this);
         seekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
@@ -118,6 +121,13 @@ public class UserFilter extends AppCompatActivity implements View.OnClickListene
 
 
                 min.setText(minValue.toString());
+                if(maxValue==90){
+                    tvMaxText.setText("L & above");
+                }
+                else
+                {
+                    tvMaxText.setText("L");
+                }
                 max.setText(maxValue.toString());
 
             }

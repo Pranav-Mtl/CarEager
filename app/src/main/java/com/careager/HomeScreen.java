@@ -103,31 +103,25 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                                 startActivity(new Intent(getApplicationContext(), HowItWork.class));
 
                         } else if (position == 1) {
-                            startActivity(new Intent(getApplicationContext(),ForumCategory.class));
-                        } else if (position == 2) {
                             startActivity(new Intent(getApplicationContext(), LatestOffers.class));
-                        }else if (position == 3) {
+                        }else if (position == 2) {
                             startActivity(new Intent(getApplicationContext(), TipsAndAdvice.class));
                         }
-                        else if (position == 4) {
+                        else if (position == 3) {
                             startActivity(new Intent(getApplicationContext(), AddBusinessMap.class));
                         }
-                        else if (position == 5) {
+                        else if (position == 4) {
                             startActivity(new Intent(getApplicationContext(), RoadsideAssistance.class));
                         }
-                        else if (position == 6) {
+                        else if (position == 5) {
                             startActivity(new Intent(getApplicationContext(), AboutUs.class));
                         }
-                        else if (position == 7) {
+                        else if (position == 6) {
                             startActivity(new Intent(getApplicationContext(), Settings.class));
                         }
-                        else if (position == 8) {
-                            Constant.NAME="Sign in";
-                            Util.setSharedPrefrenceValue(getApplicationContext(), Constant.PREFS_NAME, Constant.SP_LOGIN_ID, null);
-                            Util.setSharedPrefrenceValue(getApplicationContext(), Constant.PREFS_NAME, Constant.SP_LOGIN_TYPE, null);
-                            Intent intent = new Intent(getApplicationContext(), HowItWork.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                        else if (position == 7) {
+                            if(Util.isInternetConnection(HomeScreen.this))
+                           new Logout().execute(userID,userType);
                         }
 
                     }
@@ -159,7 +153,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     private void initialize(){
         btnChat= (FloatingActionButton) findViewById(R.id.chatFabButton);
         mViewPager= (ViewPager) findViewById(R.id.pager);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(4);
         tabs= (PagerSlidingTabStrip) findViewById(R.id.pager_tab_strip);
 
 
@@ -278,6 +272,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 case 3:
                     // Top Rated fragment activity
                     return new UpdatesFragment();
+                case 4:
+                    // Top Rated fragment activity
+                    return new ForumFragment();
 
 
 
@@ -288,7 +285,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         @Override
         public int getCount() {
-            return 4;
+            return 5;
         }
 
         @Override
@@ -303,6 +300,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     return getString(R.string.dealer_tab_three_title);
                 case 3:
                     return getString(R.string.dealer_tab_four_title);
+                case 4:
+                    return getString(R.string.dealer_tab_five_title);
 
 
             }
@@ -366,17 +365,17 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         if(width>=1000 && height>=1500){
             xx=700;
-            yy=650;
+            yy=750;
         }
         else if(width>=700 && height>=1000)
         {
             xx=550;
-            yy=500;
+            yy=600;
         }
         else
         {
             xx=450;
-            yy=400;
+            yy=500;
         }
 
     }
@@ -386,13 +385,13 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         // x -->  X-Cordinate
         // y -->  Y-Cordinate
 
-        final TextView tvMsg,tvTitle;
+        final TextView tvMsg,tvTitle,tvBottomMsg,tvBottomSmall;
         Button btnClosePopup,btnsave;
 
         final Dialog dialog  = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setContentView(R.layout.common_popup);
+        dialog.setContentView(R.layout.popup_home_screen);
         dialog.setCanceledOnTouchOutside(true);
 
         WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
@@ -407,22 +406,25 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         btnsave= (Button) dialog.findViewById(R.id.popup_add);
         tvMsg= (TextView) dialog.findViewById(R.id.popup_message);
         tvTitle= (TextView) dialog.findViewById(R.id.popup_title);
+        tvBottomMsg= (TextView) dialog.findViewById(R.id.popup_msg);
+        tvBottomSmall= (TextView) dialog.findViewById(R.id.popup_msg_small);
 
         tvTitle.setText(getResources().getString(R.string.no_internet_title));
-        tvMsg.setText(getResources().getString(R.string.no_internet_message));
+        tvMsg.setText(getResources().getString(R.string.no_internet_message_home));
         btnClosePopup.setText(getResources().getString(R.string._no_internet_cancel));
         btnsave.setText(getResources().getString(R.string._no_internet_ok));
 
-        btnClosePopup.setVisibility(View.GONE);
 
+        tvBottomMsg.setText("If you are in emergency, click");
+        tvBottomSmall.setText("*Misuse of this service can permanently blacklist the device/account");
 
         btnClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Toast.makeText(SellerQuestionExpandable.this,edittext.getText().toString(),Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), RoadsideAssistance.class));
                 dialog.dismiss();
-                finish();
+                //finish();
             }
         });
 
@@ -430,7 +432,10 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                                        @Override
                                        public void onClick(View v) {
 
-
+                                           Intent intent = new Intent(Intent.ACTION_MAIN);
+                                           intent.addCategory(Intent.CATEGORY_HOME);
+                                           intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+                                           startActivity(intent);
                                            dialog.dismiss();
                                        }
                                    }
@@ -446,7 +451,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         // x -->  X-Cordinate
         // y -->  Y-Cordinate
 
-        final TextView tvMsg,tvTitle;
+        final TextView tvMsg,tvTitle,tvBottomMsg;
         Button btnClosePopup,btnsave;
 
         final Dialog dialog  = new Dialog(context);
@@ -468,10 +473,13 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         tvMsg= (TextView) dialog.findViewById(R.id.popup_message);
         tvTitle= (TextView) dialog.findViewById(R.id.popup_title);
 
+
         tvTitle.setText(getResources().getString(R.string._no_response_title));
         tvMsg.setText(getResources().getString(R.string._no_response_message));
         btnClosePopup.setText(getResources().getString(R.string._no_response_cancel));
         btnsave.setText(getResources().getString(R.string._no_response_save));
+
+
 
         //btnClosePopup.setVisibility(View.GONE);
 
@@ -529,4 +537,44 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         }, 2000);
     }
 
+
+    private class Logout extends AsyncTask<String,String,String> {
+        @Override
+        protected void onPreExecute() {
+            progressDialog.show();
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String result=objHomeScreenBL.getLogoutData(params[0], params[1]);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+               if(Constant.WS_RESPONSE_SUCCESS.equalsIgnoreCase(s)){
+                   Constant.NAME="Sign in";
+                   Util.setSharedPrefrenceValue(getApplicationContext(), Constant.PREFS_NAME, Constant.SP_LOGIN_ID, null);
+                   Util.setSharedPrefrenceValue(getApplicationContext(), Constant.PREFS_NAME, Constant.SP_LOGIN_TYPE, null);
+                   Intent intent = new Intent(getApplicationContext(), HowItWork.class);
+                   intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                   startActivity(intent);
+               }
+                else
+                   Toast.makeText(getApplicationContext(),"Something went wrong.",Toast.LENGTH_SHORT).show();
+
+            }
+            catch (NullPointerException e){
+                //showDialogResponse(HomeScreen.this);
+            }catch (Exception e){
+
+            }
+            finally {
+                progressDialog.dismiss();
+            }
+        }
+    }
 }

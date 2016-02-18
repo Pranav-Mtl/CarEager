@@ -82,36 +82,16 @@
 
         </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tv_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Comments: "
-            android:textColor="@color/textColor"
-            android:textStyle="bold"
-            android:padding="5dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/article_question_detail"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
-            android:layout_height="match_parent"/>
-
         <LinearLayout
             android:id="@+id/article_detail_comment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/chat_bottom"
-            android:layout_alignParentBottom="true"
             android:weightSum="5"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:background="@color/grayColor"
             android:gravity="center_vertical"
             android:visibility="gone"
@@ -140,7 +120,26 @@
                     />
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comments: "
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            android:padding="5dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/article_question_detail"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>
 
 

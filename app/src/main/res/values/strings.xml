@@ -57,10 +57,12 @@
     <!-- messages-->
 
     <string name="no_internet_title">No Internet</string>
-    <string name="no_internet_message">Looks like you have no or very slow data connectivity.</string>
+    <string name="no_internet_message">Very Slow or No Internet</string>
 
-    <string name="no_gps_title">No GPS</string>
-    <string name="no_gps_message">Please enable your GPS</string>
+    <string name="no_internet_message_home">Very Slow or No Internet. Press ‘OK’ to Exit </string>
+
+    <string name="no_gps_title">No GPS Found</string>
+    <string name="no_gps_message">Please enable gps to send your exact location to CarEager.</string>
 
 
     <string name="no_response_title">D\'oh!</string>
@@ -99,7 +101,8 @@
     <string name="dealer_tab_two_title">Search Nearby</string>
     <string name="dealer_tab_three_title">Magazine</string>
     <string name="dealer_tab_four_title">Updates</string>
-    <string name="dealer_tab_five_title">Latest Offers</string>
+    <string name="dealer_tab_five_title">Forums</string>
+
     <string name="title_activity_user_filter">UserFilter</string>
 
     <string-array name="category">
@@ -118,7 +121,7 @@
     <string name="_no_internet_message">Looks like you have no or very slow data connectivity.</string>
     <string name="_no_internet_save">Try again?</string>
     <string name="_no_internet_ok">OK</string>
-    <string name="_no_internet_cancel">Cancel</string>
+    <string name="_no_internet_cancel">Roadside Assistance</string>
 
     <!--string for popup when no response from server..-->
     <string name="_no_response_title">D\'oh!</string>

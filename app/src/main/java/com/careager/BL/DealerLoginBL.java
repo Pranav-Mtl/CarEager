@@ -70,19 +70,19 @@ public class DealerLoginBL {
 
 
 
-    public String validateSigninDetailsSocial(String emailID,String gcm,String device,Context context){
+    public String validateSigninDetailsSocial(String emailID,String gcm,String device,String name,Context context){
         mContext=context;
 
-        String result=callWsUrlSocial(emailID,gcm,device);   // call webservice
-        String status=validateSocial(result);             // parse json
+        String result=callWsUrlSocial(emailID,gcm,device,name);   // call webservice
+        String status=validateSocial(result);             // parse jso
         return status;
 
     }
 
-    private String callWsUrlSocial(String emailID,String gcm,String device){
+    private String callWsUrlSocial(String emailID,String gcm,String device,String name){
 
 
-        String URL="email="+emailID+"&gcm_id="+gcm+"device_id="+device;
+        String URL="email="+emailID+"&gcm_id="+gcm+"&device_id="+device+"&name="+name;
         String txtJson="";
 
             txtJson = RestFullWS.serverRequest(Constant.WS_PATH_USER,URL, Constant.WS_USER_SIGNIN_SOCIAL);

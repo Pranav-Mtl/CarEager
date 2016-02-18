@@ -1,15 +1,19 @@
 package com.careager;
 
+
+
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +23,11 @@ import com.careager.Configuration.Util;
 import com.careager.Constant.Constant;
 import com.careager.careager.R;
 
-public class ForumCategory extends AppCompatActivity implements View.OnClickListener {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ForumFragment extends Fragment implements View.OnClickListener {
+
     LinearLayout llDesign,llElectronic,llRepair,llEngine,llChassis,llTransmission;
 
     TextView tvDesignOne,tvDesignTwo,tvElectronicOne,tvElectronicTwo,tvRepairOne,tvRepairTwo,tvEngineOne,tvEngineTwo,tvChassisOne,tvChassisTwo,tvTransmissionOne,tvTransmissionTwo;
@@ -35,74 +43,78 @@ public class ForumCategory extends AppCompatActivity implements View.OnClickList
 
     Button btnAskQuestion;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forum_category);
-        initialize();
 
-        if(Util.isInternetConnection(ForumCategory.this))
-            new GetCategory().execute();
+    public ForumFragment() {
+        // Required empty public constructor
     }
 
-    private void initialize(){
-        btnChat= (FloatingActionButton) findViewById(R.id.chatFabButton);
-        llDesign= (LinearLayout) findViewById(R.id.ll_design);
-        llElectronic= (LinearLayout) findViewById(R.id.ll_electronic);
-        llRepair= (LinearLayout) findViewById(R.id.ll_repair);
-        llEngine= (LinearLayout) findViewById(R.id.ll_engine);
-        llChassis= (LinearLayout) findViewById(R.id.ll_chassic);
-        llTransmission= (LinearLayout) findViewById(R.id.ll_transmission);
-        btnAskQuestion= (Button) findViewById(R.id.forum_ask_question_button);
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View item= inflater.inflate(R.layout.fragment_forum, container, false);
+
+        initialize(item);
+
+        if(Util.isInternetConnection(getActivity()))
+            new GetCategory().execute();
+        return item;
+    }
+
+    private void initialize(View view){
+        btnChat= (FloatingActionButton) view.findViewById(R.id.chatFabButton);
+        llDesign= (LinearLayout) view.findViewById(R.id.ll_design);
+        llElectronic= (LinearLayout) view.findViewById(R.id.ll_electronic);
+        llRepair= (LinearLayout) view.findViewById(R.id.ll_repair);
+        llEngine= (LinearLayout) view.findViewById(R.id.ll_engine);
+        llChassis= (LinearLayout) view.findViewById(R.id.ll_chassic);
+        llTransmission= (LinearLayout) view.findViewById(R.id.ll_transmission);
+        btnAskQuestion= (Button) view.findViewById(R.id.forum_ask_question_button);
 
         btnAskQuestion.setOnClickListener(this);
 
-        tvDesignOne= (TextView) findViewById(R.id.tv_design_one);
-        tvDesignTwo= (TextView) findViewById(R.id.tv_design_two);
+        tvDesignOne= (TextView) view.findViewById(R.id.tv_design_one);
+        tvDesignTwo= (TextView) view.findViewById(R.id.tv_design_two);
 
-        tvElectronicOne= (TextView) findViewById(R.id.tv_electronic_one);
-        tvElectronicTwo= (TextView) findViewById(R.id.tv_electronic_two);
+        tvElectronicOne= (TextView) view.findViewById(R.id.tv_electronic_one);
+        tvElectronicTwo= (TextView) view.findViewById(R.id.tv_electronic_two);
 
-        tvRepairOne= (TextView) findViewById(R.id.tv_repair_one);
-        tvRepairTwo= (TextView) findViewById(R.id.tv_repair_two);
+        tvRepairOne= (TextView) view.findViewById(R.id.tv_repair_one);
+        tvRepairTwo= (TextView) view.findViewById(R.id.tv_repair_two);
 
-        tvEngineOne= (TextView) findViewById(R.id.tv_engine_one);
-        tvEngineTwo= (TextView) findViewById(R.id.tv_engine_two);
+        tvEngineOne= (TextView) view.findViewById(R.id.tv_engine_one);
+        tvEngineTwo= (TextView) view.findViewById(R.id.tv_engine_two);
 
-        tvChassisOne= (TextView) findViewById(R.id.tv_chassic_one);
-        tvChassisTwo= (TextView) findViewById(R.id.tv_chassic_two);
+        tvChassisOne= (TextView) view.findViewById(R.id.tv_chassic_one);
+        tvChassisTwo= (TextView) view.findViewById(R.id.tv_chassic_two);
 
-        tvTransmissionOne= (TextView) findViewById(R.id.tv_transmission_one);
-        tvTransmissionTwo= (TextView) findViewById(R.id.tv_transmission_two);
+        tvTransmissionOne= (TextView) view.findViewById(R.id.tv_transmission_one);
+        tvTransmissionTwo= (TextView) view.findViewById(R.id.tv_transmission_two);
 /*----------------------------------------------------------------------------------------*/
-        tvDateDesignOne= (TextView) findViewById(R.id.tv_design_dateone);
-        tvDateDesignTwo= (TextView) findViewById(R.id.tv_design_datetwo);
+        tvDateDesignOne= (TextView) view.findViewById(R.id.tv_design_dateone);
+        tvDateDesignTwo= (TextView) view.findViewById(R.id.tv_design_datetwo);
 
-        tvDateElectronicOne= (TextView) findViewById(R.id.tv_electronic_dateone);
-        tvDateElectronicTwo= (TextView) findViewById(R.id.tv_electronic_datetwo);
+        tvDateElectronicOne= (TextView) view.findViewById(R.id.tv_electronic_dateone);
+        tvDateElectronicTwo= (TextView) view.findViewById(R.id.tv_electronic_datetwo);
 
-        tvDateRepairOne= (TextView) findViewById(R.id.tv_repair_dateone);
-        tvDateRepairTwo= (TextView) findViewById(R.id.tv_repair_datetwo);
+        tvDateRepairOne= (TextView) view.findViewById(R.id.tv_repair_dateone);
+        tvDateRepairTwo= (TextView) view.findViewById(R.id.tv_repair_datetwo);
 
-        tvDateEngineOne= (TextView) findViewById(R.id.tv_engine_dateone);
-        tvDateEngineTwo= (TextView) findViewById(R.id.tv_engine_datetwo);
+        tvDateEngineOne= (TextView) view.findViewById(R.id.tv_engine_dateone);
+        tvDateEngineTwo= (TextView) view.findViewById(R.id.tv_engine_datetwo);
 
-        tvDateChassisOne= (TextView) findViewById(R.id.tv_chassic_dateone);
-        tvDateChassisTwo= (TextView) findViewById(R.id.tv_chassic_datetwo);
+        tvDateChassisOne= (TextView) view.findViewById(R.id.tv_chassic_dateone);
+        tvDateChassisTwo= (TextView) view.findViewById(R.id.tv_chassic_datetwo);
 
-        tvDateTransmissionOne= (TextView) findViewById(R.id.tv_transmission_dateone);
-        tvDateTransmissionTwo= (TextView) findViewById(R.id.tv_transmission_datetwo);
+        tvDateTransmissionOne= (TextView) view.findViewById(R.id.tv_transmission_dateone);
+        tvDateTransmissionTwo= (TextView) view.findViewById(R.id.tv_transmission_datetwo);
 
         objForumCategoryBL=new ForumCategoryBL();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
-        progressDialog=new ProgressDialog(ForumCategory.this);
+        progressDialog=new ProgressDialog(getActivity());
 
         llDesign.setOnClickListener(this);
         llElectronic.setOnClickListener(this);
@@ -113,13 +125,13 @@ public class ForumCategory extends AppCompatActivity implements View.OnClickList
 
         btnChat.setOnClickListener(this);
 
-        userId=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_ID);
-        userType=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_TYPE);
+        userId= Util.getSharedPrefrenceValue(getActivity(), Constant.SP_LOGIN_ID);
+        userType=Util.getSharedPrefrenceValue(getActivity(),Constant.SP_LOGIN_TYPE);
 
         if(userId!=null)
             if(userType!=null)
                 if(userType.equalsIgnoreCase(Constant.strLoginUser)) {
-                    btnChat.setVisibility(View.VISIBLE);
+                    //btnChat.setVisibility(View.VISIBLE);
                     btnAskQuestion.setVisibility(View.VISIBLE);
                 }
 
@@ -127,59 +139,40 @@ public class ForumCategory extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == android.R.id.home) {
-
-            //Toast.makeText(getApplicationContext(),"BAck Clicked",Toast.LENGTH_SHORT).show();
-            onBackPressed();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ll_design:
-                startActivity(new Intent(getApplicationContext(),ForumQuestionList.class).putExtra("Category",Constant.categoryDesign));
+                startActivity(new Intent(getActivity(),ForumQuestionList.class).putExtra("Category",Constant.categoryDesign));
                 break;
             case R.id.ll_electronic:
-                startActivity(new Intent(getApplicationContext(), ForumQuestionList.class).putExtra("Category", Constant.categoryElectronics));
+                startActivity(new Intent(getActivity(), ForumQuestionList.class).putExtra("Category", Constant.categoryElectronics));
                 break;
             case R.id.ll_repair:
-                startActivity(new Intent(getApplicationContext(),ForumQuestionList.class).putExtra("Category", Constant.categoryRepair));
+                startActivity(new Intent(getActivity(),ForumQuestionList.class).putExtra("Category", Constant.categoryRepair));
                 break;
             case R.id.ll_engine:
-                startActivity(new Intent(getApplicationContext(),ForumQuestionList.class).putExtra("Category", Constant.categoryEngine));
+                startActivity(new Intent(getActivity(),ForumQuestionList.class).putExtra("Category", Constant.categoryEngine));
                 break;
             case R.id.ll_chassic:
-                startActivity(new Intent(getApplicationContext(),ForumQuestionList.class).putExtra("Category", Constant.categoryChassis));
+                startActivity(new Intent(getActivity(),ForumQuestionList.class).putExtra("Category", Constant.categoryChassis));
                 break;
             case R.id.ll_transmission:
-                startActivity(new Intent(getApplicationContext(), ForumQuestionList.class).putExtra("Category", Constant.categoryChassis));
+                startActivity(new Intent(getActivity(), ForumQuestionList.class).putExtra("Category", Constant.categoryChassis));
                 break;
             case R.id.chatFabButton:
-                startActivity(new Intent(getApplicationContext(),ForumUserList.class));
+                startActivity(new Intent(getActivity(),ForumUserList.class));
                 break;
             case R.id.forum_ask_question_button:
-                startActivityForResult(new Intent(getApplicationContext(), ForumAskQuestion.class), 1);
+                startActivityForResult(new Intent(getActivity(), ForumAskQuestion.class), 1);
                 break;
         }
     }
 
-    private class GetCategory extends AsyncTask<String,String,String>{
+
+    private class GetCategory extends AsyncTask<String,String,String> {
         @Override
         protected void onPreExecute() {
-            progressDialog.show();
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage("Loading...");
+
         }
 
         @Override
@@ -311,17 +304,17 @@ public class ForumCategory extends AppCompatActivity implements View.OnClickList
 
             }
             finally {
-                progressDialog.dismiss();
+
             }
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode==RESULT_OK){
-            if(Util.isInternetConnection(ForumCategory.this))
+        if(resultCode== Activity.RESULT_OK){
+            if(Util.isInternetConnection(getActivity()))
                 new GetCategory().execute();
 
         }

@@ -106,6 +106,7 @@ public class DealerProfileBL {
             objDealerProfileBE.setCareagerRating(jsonObject.get("careager_rating").toString());
             objDealerProfileBE.setTotalRating(jsonObject.get("total").toString());
             objDealerProfileBE.setRating(jsonObject.get("avg").toString());
+            objDealerProfileBE.setApproved(jsonObject.get("approved_by_admin").toString());
 
 
         } catch (Exception e) {

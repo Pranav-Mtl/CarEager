@@ -153,6 +153,18 @@ public class RoadsideAssistance extends AppCompatActivity implements View.OnClic
                         else
                             Toast.makeText(getApplicationContext(),"Unable to fetch current location. Try again",Toast.LENGTH_SHORT).show();
                     }
+                    else
+                    {
+                        if (currentlatitude != null && currentlongtitude != null) {
+                            Uri uri = Uri.parse("smsto: 09220592205");
+                            Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+                            it.putExtra("sms_body","77YYA EMERGENCY Name: "+name+",\nMessage: "+description+",\n"+"Location: "+currentlatitude+" , "+currentlongtitude);
+                            startActivity(it);
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(),"Unable to fetch current location. Try again",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
 
 
@@ -265,11 +277,11 @@ public class RoadsideAssistance extends AppCompatActivity implements View.OnClic
         tvTitle.setText(getResources().getString(R.string.no_gps_title));
         tvMsg.setText(getResources().getString(R.string.no_gps_message));
         btnClosePopup.setText(getResources().getString(R.string._no_internet_cancel));
-        btnsave.setText(getResources().getString(R.string._no_internet_ok));
+        btnsave.setText("OK");
 
         btnClosePopup.setVisibility(View.GONE);
 
-        btnsave.setVisibility(View.GONE);
+
         btnClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,7 +295,6 @@ public class RoadsideAssistance extends AppCompatActivity implements View.OnClic
         btnsave.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View v) {
-
 
                                            dialog.dismiss();
                                        }

@@ -109,9 +109,11 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:gravity="center"
-                android:text="Add a cover image of your business above."
+                android:textSize="@dimen/smallTextSize"
+                android:text="Add a cover image of your business above (optional). "
                 />
             <TextView
+                android:id="@+id/tv_top_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textGrayColor"
@@ -119,8 +121,7 @@
                 android:layout_marginRight="20dp"
                 android:textSize="@dimen/smallTextSize"
                 android:layout_marginTop="5dp"
-                android:text="This section is for adding any local car business on CarEager.
-But if you are owner of a business, please visit “BUSINESS SIGNUP” page to add your business on CarEager for free. "
+                android:text="“BUSINESS SIGNUP”  "
                 />
 
             <EditText
@@ -132,6 +133,7 @@ But if you are owner of a business, please visit “BUSINESS SIGNUP” page to a
                 android:imeOptions="actionNext"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:singleLine="false"
                 />
 
             <EditText
@@ -139,12 +141,13 @@ But if you are owner of a business, please visit “BUSINESS SIGNUP” page to a
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Contact no. (optional) "
+                android:hint="Contact number"
                 android:inputType="number"
                 android:imeOptions="actionNext"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:maxLength="10"
+                android:singleLine="false"
                 />
 
             <EditText
@@ -152,11 +155,12 @@ But if you are owner of a business, please visit “BUSINESS SIGNUP” page to a
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Email-id (optional) "
+                android:hint="Email-id  "
                 android:inputType="textEmailAddress"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:singleLine="false"
                 />
 
             <Spinner

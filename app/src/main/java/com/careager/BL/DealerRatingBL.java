@@ -1,9 +1,5 @@
 package com.careager.BL;
 
-import android.content.Context;
-
-import com.careager.BE.UserSignupBE;
-import com.careager.Configuration.Util;
 import com.careager.Constant.Constant;
 import com.careager.WS.RestFullWS;
 
@@ -12,22 +8,22 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 /**
- * Created by appslure on 13-12-2015.
+ * Created by appslure on 10-02-2016.
  */
-public class DealerContactBL {
+public class DealerRatingBL {
 
-    public String sendMessage(String name,String mobile,String email,String message,String policy,String registration,String id){
+    public String sendRating(String userID,String dealerID,String review,String rating){
 
-        String result=callWsUrl(name,mobile,email,message,policy,registration,id);   // call webservice
+        String result=callWsUrl(userID,dealerID,review,rating);   // call webservice
         String status=validate(result);             // parse json
         return status;
     }
 
 
-    private String callWsUrl(String name,String mobile,String email,String message,String policy,String registration,String id){
+    private String callWsUrl(String userID,String dealerID,String review,String rating){
 
-        String URL="name="+name+"&email="+email+"&phone="+mobile+"&message="+message+"&showroom_id="+id+"&policy_no="+policy+"&vehicle_no="+registration;
-        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_Contact_owner);
+        String URL="showroom_id="+dealerID+"&user_id="+userID+"&rating="+rating+"&comment="+review;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_DEALER_REVIEW);
         return txtJson;
     }
 

@@ -27,7 +27,7 @@ public class ProfileServiceRequestBL {
     /* CALL WEB SERVICE */
     private String callWS(){
 
-        String URL="type="+objProfileServicesRequestBE.getType()+"&showroom_id="+objProfileServicesRequestBE.getShowroomID()+"&name="+objProfileServicesRequestBE.getName()+"&email="+objProfileServicesRequestBE.getEmail()+"&contact_no="+objProfileServicesRequestBE.getContact()+"&vehicle_no="+objProfileServicesRequestBE.getVehicle()+"&date="+objProfileServicesRequestBE.getDate()+"&services="+objProfileServicesRequestBE.getServices()+"&description="+objProfileServicesRequestBE.getDescription();
+        String URL="&showroom_id="+objProfileServicesRequestBE.getShowroomID()+"&name="+objProfileServicesRequestBE.getName()+"&email="+objProfileServicesRequestBE.getEmail()+"&phone="+objProfileServicesRequestBE.getContact()+"&vehicle_no="+objProfileServicesRequestBE.getVehicle()+"&date="+objProfileServicesRequestBE.getDate()+"&services="+objProfileServicesRequestBE.getServices()+"&message="+objProfileServicesRequestBE.getDescription();
         String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_REQUEST_SERVICE);
         return txtJson;
 

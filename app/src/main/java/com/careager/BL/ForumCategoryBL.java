@@ -45,8 +45,8 @@ public class ForumCategoryBL {
             String electric=jsonObject.get(Constant.categoryElectronics).toString();
             String repair=jsonObject.get(Constant.categoryRepair).toString();
             String engine=jsonObject.get(Constant.categoryEngine).toString();
-            String transmission=jsonObject.get(Constant.categoryTransmission).toString();
-            String chassis=jsonObject.get(Constant.categoryChassis).toString();
+            String transmission=jsonObject.get(Constant.categoryChassis).toString();
+
 
 
             if(!design.equalsIgnoreCase("[]"))
@@ -64,8 +64,7 @@ public class ForumCategoryBL {
             if(!transmission.equalsIgnoreCase("[]"))
                 parseTransmission(transmission);
 
-            if(!chassis.equalsIgnoreCase("[]"))
-                parseChassis(chassis);
+
 
 
 
@@ -188,8 +187,8 @@ public class ForumCategoryBL {
 
             for (int i=0;i<jsonArrayObject.size();i++) {
                 JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
-                Constant.transmissionID[i]=jsonObject.get("title").toString();
-                Constant.transmissionTitle[i]=jsonObject.get("id").toString();
+                Constant.transmissionID[i]=jsonObject.get("id").toString();
+                Constant.transmissionTitle[i]=jsonObject.get("title").toString();
                 Constant.transmissionName[i]=jsonObject.get("name").toString();
                 Constant.transmissionDate[i]=jsonObject.get("date").toString();
 
@@ -213,8 +212,8 @@ public class ForumCategoryBL {
 
             for (int i=0;i<jsonArrayObject.size();i++) {
                 JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
-                Constant.chassisID[i]=jsonObject.get("title").toString();
-                Constant.chassisTitle[i]=jsonObject.get("id").toString();
+                Constant.chassisID[i]=jsonObject.get("id").toString();
+                Constant.chassisTitle[i]=jsonObject.get("title").toString();
                 Constant.chassisName[i]=jsonObject.get("name").toString();
                 Constant.chassisDate[i]=jsonObject.get("date").toString();
 

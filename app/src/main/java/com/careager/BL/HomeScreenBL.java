@@ -135,4 +135,43 @@ public class HomeScreenBL {
 
         }
     }
+
+    /*--------------------logout----------------------*/
+
+    public String getLogoutData(String userid,String userType){
+        userID=userid;
+        String result=callWSLogout(userid, userType);
+        String status=validateLogout(result);
+
+        return status;
+
+    }
+    private String callWSLogout(String userID,String userType){
+        String URL = "";
+        String txtJson="";
+
+            URL="id="+userID+"&type="+userType;
+            txtJson = RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_LOGOUT);
+
+        return txtJson;
+    }
+
+    private String validateLogout(String result){
+        String status="";
+
+        JSONParser jsonP=new JSONParser();
+        try {
+            Object obj =jsonP.parse(result);
+            JSONArray jsonArrayObject = (JSONArray) obj;
+            JSONObject jsonObject=(JSONObject)jsonP.parse(jsonArrayObject.get(0).toString());
+            status=jsonObject.get("status").toString();
+
+        } catch (Exception e) {
+            e.getLocalizedMessage();
+        }
+
+        return status;
+
+    }
+
 }

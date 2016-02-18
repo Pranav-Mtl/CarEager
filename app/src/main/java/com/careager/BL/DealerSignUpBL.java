@@ -51,6 +51,7 @@ public class DealerSignUpBL {
             if(status.equalsIgnoreCase(Constant.WS_RESPONSE_SUCCESS)){
                 Util.setSharedPrefrenceValue(mContext, Constant.PREFS_NAME, Constant.SP_LOGIN_ID, jsonObject.get("showroom_id").toString());
             }
+            status=status+","+jsonObject.get("message").toString();
 
         } catch (Exception e) {
             e.getLocalizedMessage();

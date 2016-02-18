@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.careager.DealerReview">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:theme="@style/Toolbar_Theme"
+        android:elevation="4dp"
+        android:background="@color/toolbarBG"
+        android:minHeight="?attr/actionBarSize">
+        <TextView
+            android:id="@+id/chat_person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteColor"
+            android:gravity="center"
+            android:text="Rate this Dealer"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/grayColor"
+            android:padding="20dp"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <RatingBar
+                android:id="@+id/dealer_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1"
+                android:maxWidth="110dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:maxHeight="100dp"
+                android:minHeight="33dp"
+                android:progressDrawable="@drawable/dealer_rating_customized"
+                android:isIndicator="false"/>
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/dealer_review"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:background="@color/grayColor"
+            android:padding="10dp"
+            android:hint="Type your review"
+            />
+
+        <Button
+            android:id="@+id/dealer_review_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/customized_button"
+            android:textColor="@color/whiteColor"
+            android:text="Submit"
+            android:minHeight="@dimen/button_min_height"
+            />
+    </LinearLayout>
+</RelativeLayout>

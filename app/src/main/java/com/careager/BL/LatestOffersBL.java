@@ -72,6 +72,7 @@ public class LatestOffersBL {
             Constant.carOfferPosted=new String[jsonArrayObject.size()];
             Constant.carOffer=new String[jsonArrayObject.size()];
             Constant.carOfferTitle=new String[jsonArrayObject.size()];
+            Constant.carOfferShowroomID=new String[jsonArrayObject.size()];
 
             for(int i=0;i<jsonArrayObject.size();i++){
                 JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
@@ -80,6 +81,7 @@ public class LatestOffersBL {
                 Constant.carOfferPosted[i]=jsonObject.get("name").toString();
                 Constant.carOffer[i]=jsonObject.get("offer_description").toString();
                 Constant.carOfferTitle[i]=jsonObject.get("vehicle_title").toString();
+                Constant.carOfferShowroomID[i]=jsonObject.get("showroom_id").toString();
 
 
 

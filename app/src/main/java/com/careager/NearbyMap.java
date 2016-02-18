@@ -159,7 +159,7 @@ public class NearbyMap extends AppCompatActivity  {
                         if(i==0)
                             initializeMap(Constant.serviceLatitude[i],Constant.serviceLongitude[i]);
 
-                        showMarker(Constant.serviceLatitude[i], Constant.serviceLongitude[i],Constant.serviceID[i]+": "+Constant.serviceName[i],Constant.serviceAddress[i]+"\n Mob. "+Constant.serviceContact[i]);
+                        showMarker(Constant.serviceLatitude[i], Constant.serviceLongitude[i],Constant.serviceID[i]+": "+Constant.serviceName[i]+" ("+Constant.serviceCategory[i]+")",Constant.serviceAddress[i]+"\n Mob. "+Constant.serviceContact[i]);
 
                 }
             }catch (NullPointerException e){

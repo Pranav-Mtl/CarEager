@@ -117,7 +117,7 @@ public class DealerContact extends AppCompatActivity implements View.OnClickList
 
                 if(Util.isInternetConnection(DealerContact.this))
                     if(validateDetails())
-                    new SendMessage().execute(categoryName,name,mobile,email,message,policy,registration,profileID);
+                    new SendMessage().execute(name,mobile,email,message,policy,registration,profileID);
                 else
                     showDialogInternet(DealerContact.this);
                 break;
@@ -134,7 +134,7 @@ public class DealerContact extends AppCompatActivity implements View.OnClickList
 
         @Override
         protected String doInBackground(String... params) {
-            String result=objDealerContactBL.sendMessage(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
+            String result=objDealerContactBL.sendMessage(params[0],params[1],params[2],params[3],params[4],params[5],params[6]);
             return result;
         }
 
@@ -144,6 +144,9 @@ public class DealerContact extends AppCompatActivity implements View.OnClickList
                 if(Constant.WS_RESPONSE_SUCCESS.equalsIgnoreCase(s)){
                     Toast.makeText(getApplicationContext(),"Your query shared with owner.",Toast.LENGTH_SHORT).show();
                     finish();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Something went wrong.",Toast.LENGTH_SHORT).show();
                 }
 
             }catch (NullPointerException e){
