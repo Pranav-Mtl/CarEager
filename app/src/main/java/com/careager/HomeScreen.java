@@ -117,9 +117,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                             startActivity(new Intent(getApplicationContext(), AboutUs.class));
                         }
                         else if (position == 6) {
-                            startActivity(new Intent(getApplicationContext(), Settings.class));
+                            startActivity(new Intent(getApplicationContext(), DealerChatList.class));
                         }
                         else if (position == 7) {
+                            startActivity(new Intent(getApplicationContext(), Settings.class));
+                        }
+                        else if (position == 8) {
                             if(Util.isInternetConnection(HomeScreen.this))
                            new Logout().execute(userID,userType);
                         }
@@ -223,6 +226,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         if(userID!=null)
             if(userType!=null)
+                if(userType.equalsIgnoreCase(Constant.strLoginUser))
                     btnChat.setVisibility(View.VISIBLE);
 
 
@@ -313,6 +317,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+        if(!Util.isInternetConnection(HomeScreen.this))
+            showDialogInternet(HomeScreen.this);
         //drawerAdapter.notifyDataSetChanged();
     }
 
@@ -392,7 +398,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setContentView(R.layout.popup_home_screen);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
 
         WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
         wmlp.gravity = Gravity.CENTER;

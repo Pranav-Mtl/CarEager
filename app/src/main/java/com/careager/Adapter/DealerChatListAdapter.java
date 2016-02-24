@@ -28,10 +28,10 @@ public class DealerChatListAdapter extends RecyclerView.Adapter<DealerChatListAd
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public DealerChatListAdapter(Context context,String userID){
+    public DealerChatListAdapter(Context context,String userID,String userType){
         mContext=context;
         objDealerChatListBL=new DealerChatListBL();
-        objDealerChatListBL.getSearchCarList(userID);
+        objDealerChatListBL.getSearchCarList(userID,userType);
     }
 
     @Override

@@ -124,11 +124,11 @@ public class Constant {
 
     /* MENU ITEMS AFTER DEALER SIGN IN*/
 
-    public static String TITLES_LOGIN[] = {"Offers & Discounts","Tips & Advice","Add Local Business","Roadside Assistance","About us","Settings","Logout"};
+    public static String TITLES_LOGIN[] = {"Offers & Discounts","Tips & Advice","Add Local Business","Roadside Assistance","About CarEager","Business Chat","Settings","Logout"};
 
-    public static int ICONS[] = {R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about,R.drawable.ic_side_settings,R.drawable.ic_side_logout};
+    public static int ICONS[] = {R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about,R.drawable.ic_chat,R.drawable.ic_side_settings,R.drawable.ic_side_logout};
 
-    public static String TITLES_LOGOUT[] = {"Offers & Discounts","Tips & Advice","Add Local Business","Roadside Assistance","About us"};
+    public static String TITLES_LOGOUT[] = {"Offers & Discounts","Tips & Advice","Add Local Business","Roadside Assistance","About CarEager"};
 
     public static int ICONS_LOGOUT[] = {R.drawable.ic_side_offers,R.drawable.ic_side_tips,R.drawable.ic_side_business,R.drawable.ic_side_roadside,R.drawable.ic_about};
 

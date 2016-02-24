@@ -18,6 +18,7 @@
            android:layout_height="wrap_content"
            android:hint="Enter your location"
            android:paddingLeft="5dp"
+           android:visibility="gone"
 
            />
 
@@ -25,6 +26,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="OR"
+           android:visibility="gone"
            android:layout_marginTop="20dp"
            />
 
@@ -33,9 +35,9 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:background="@drawable/customized_button"
-           android:text="Detect current location"
+           android:text="Search Nearby car businesses"
            android:textColor="@color/buttonTextColor"
-           android:layout_marginTop="20dp"
+           android:layout_marginTop="40dp"
            android:minHeight="@dimen/button_min_height"
            />
 
@@ -56,6 +58,7 @@
            android:textColor="@color/buttonTextColor"
            android:layout_marginTop="20dp"
            android:minHeight="@dimen/button_min_height"
+           android:visibility="gone"
            />
 
 

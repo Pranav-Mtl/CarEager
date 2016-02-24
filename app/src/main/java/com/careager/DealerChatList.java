@@ -27,7 +27,7 @@ public class DealerChatList extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    String userID;
+    String userID,userType;
 
     DealerChatListAdapter objDealerChatListAdapter;
 
@@ -79,9 +79,8 @@ public class DealerChatList extends AppCompatActivity {
         if(userID!=null){
             String userType=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_TYPE);
             if(userType!=null)
-                if(userType.equalsIgnoreCase(Constant.strLoginBusiness)){
-                    new GetChatList().execute(userID);
-                }
+                    new GetChatList().execute(userID,userType);
+
         }
 
 
@@ -115,7 +114,7 @@ public class DealerChatList extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            objDealerChatListAdapter=new DealerChatListAdapter(getApplicationContext(),params[0]);
+            objDealerChatListAdapter=new DealerChatListAdapter(getApplicationContext(),params[0],params[1]);
 
             return "";
         }

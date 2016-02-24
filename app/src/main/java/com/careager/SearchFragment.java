@@ -76,8 +76,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                         Log.d("LAT LONG",currentlatitude+"/"+currentlongtitude);
                         if (currentlatitude != null && currentlongtitude != null) {
                             // getCurrentAddress(currentlatitude,currentlongtitude);
-                            getCurrentAddress(currentlatitude, currentlongtitude);
+                            String addressss=getCurrentAddress(currentlatitude, currentlongtitude);
+                            Intent intent = new Intent(getActivity(), NearbyMap.class);
+                            intent.putExtra("Location", addressss);
+                            intent.putExtra("Category", "");
 
+                            startActivity(intent);
                         } else
                             Toast.makeText(getActivity(), "Problem with location detection. Try again.", Toast.LENGTH_SHORT).show();
                     }catch (NullPointerException e){
@@ -109,7 +113,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         currentlongtitude=objLocation.getLongitude();
     }
 
-    private void getCurrentAddress(Double latitude,Double longitude){
+    private String getCurrentAddress(Double latitude,Double longitude){
+        String addressComplete="";
         try {
             Geocoder geocoder;
             List<Address> addresses;
@@ -122,12 +127,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             String city = addresses.get(0).getLocality();
             String state = addresses.get(0).getAdminArea();
 
-            etLocation.setText(address+","+city);
+            addressComplete=address+","+city;
+            //etLocation.setText(address+","+city);
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
+
+        return addressComplete;
     }
 
     private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {

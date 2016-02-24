@@ -12,18 +12,18 @@ import org.json.simple.parser.JSONParser;
  */
 public class DealerChatListBL {
 
-    public void getSearchCarList(String user_id){
+    public void getSearchCarList(String user_id,String userType){
 
-        String result=callWS(user_id);
+        String result=callWS(user_id,userType);
         validate(result);
 
     }
 
     /* CALL WEB SERVICE */
-    private String callWS(String user_id){
+    private String callWS(String user_id,String userType){
 
        // http://careager.com/careager_webservices/showroomChatList?id=4
-        String URL="id="+user_id;
+        String URL="id="+user_id+"&user_type="+userType;
         String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_DEALER_CHAT_LIST);
         return txtJson;
 

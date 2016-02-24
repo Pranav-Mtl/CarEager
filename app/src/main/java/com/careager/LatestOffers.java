@@ -1,8 +1,10 @@
 package com.careager;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,10 +12,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +38,8 @@ public class LatestOffers extends AppCompatActivity {
     ViewPager pager,showRoomPager,carEagerPager;
 
     ProgressDialog progressDialog;
+
+    int xx,yy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +79,35 @@ public class LatestOffers extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        popupSize();
+
+
+    }
+
+     /*-----------------------------------------------------------*/
+
+    private void popupSize(){
+        Display display = getWindowManager().getDefaultDisplay();
+
+        int width = display.getWidth();
+        int height = display.getHeight();
+
+        // System.out.println("width" + width + "height" + height);
+
+        if(width>=1000 && height>=1500){
+            xx=width;
+            yy=650;
+        }
+        else if(width>=700 && height>=1000)
+        {
+            xx=width;
+            yy=500;
+        }
+        else
+        {
+            xx=width;
+            yy=400;
+        }
 
     }
 
@@ -264,7 +301,12 @@ public class LatestOffers extends AppCompatActivity {
             tvOffer= (TextView) itemView.findViewById(R.id.careager_offer);
 
 
-
+            imgPager.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialogImage(LatestOffers.this,Constant.carEagerOfferBaseURL + Constant.carEagerOfferImage[position]);
+                }
+            });
 
 
             Picasso.with(context)
@@ -421,5 +463,35 @@ public class LatestOffers extends AppCompatActivity {
         }
     }
 
+
+    private void showDialogImage(Context context,String url){
+        // x -->  X-Cordinate
+        // y -->  Y-Cordinate
+
+        ImageView inImage;
+
+        final Dialog dialog  = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setContentView(R.layout.popup_big_image);
+        dialog.setCanceledOnTouchOutside(true);
+
+        WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
+        wmlp.gravity = Gravity.CENTER;
+        wmlp.width=xx;
+        wmlp.height=yy;
+
+
+        inImage= (ImageView) dialog.findViewById(R.id.image_big);
+
+        Picasso.with(getApplicationContext())
+                .load(url)
+                .placeholder(R.drawable.ic_default_loading)
+                .error(R.drawable.ic_default_loading)
+                .into(inImage);
+
+
+        dialog.show();
+    }
 
 }
