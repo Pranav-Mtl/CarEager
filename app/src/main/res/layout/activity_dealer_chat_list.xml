@@ -31,7 +31,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/route_search_bg"
+            >
+            <AutoCompleteTextView
+                android:id="@+id/user_search"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:background="@android:color/transparent"
+                android:paddingRight="10dp"
+                android:padding="10dp"
+                android:hint="Type business name"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
+                />
+            <ImageButton
+                android:id="@+id/routes_cross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_search_black"
+                />
+        </RelativeLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/dealer_user_list"
             android:layout_width="match_parent"

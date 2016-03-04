@@ -75,6 +75,7 @@ public class Constant {
     public static String WS_CHAT="careager_chat";
     public static String WS_USER_CHAT_LIST="forum_user_chatlist";
     public static String WS_USER_CHAT_SEARCH="forum_user_search_chatlist";
+    public static String WS_USER_BUSINESS_SEARCH="showroomOruserSearch";
     public static String WS_DEALER_CHAT_LIST="showroomChatList";
     public static String WS_FORUM_CHAT="forum_chat";
     public static String WS_FORUM_LIST="forum";
@@ -90,6 +91,7 @@ public class Constant {
     public static String WS_SETTINGS="setting";
     public static String WS_UPDATE_SETTINGS="update_setting";
     public static String WS_UPDATE_COMMENT="update_coment";
+    public static String WS_FORUM_COMMENT="question_comment";
     public static String WS_VERIFIED_BUSINESS="add_business_validation";
 
     public static String WS_DEALER_REVIEW="business_rating";

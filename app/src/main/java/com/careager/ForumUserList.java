@@ -35,7 +35,7 @@ public class ForumUserList extends AppCompatActivity implements AdapterView.OnIt
 
     Toolbar toolbar;
 
-    String userID;
+    String userID,userType;
 
     AutoCompleteTextView tvUserList;
 
@@ -89,7 +89,7 @@ public class ForumUserList extends AppCompatActivity implements AdapterView.OnIt
                 if (s.length() >= 1 && s.length() <= 10) {
                     // Toast.makeText(getApplicationContext(),"char:"+s,Toast.LENGTH_LONG).show();
                         if(Util.isInternetConnection(ForumUserList.this))
-                    new GetSearchUser().execute(userID,s.toString().trim());
+                    new GetSearchUser().execute(userID,s.toString().trim(),userType);
 
                 }
 
@@ -128,6 +128,7 @@ public class ForumUserList extends AppCompatActivity implements AdapterView.OnIt
         progressDialog=new ProgressDialog(ForumUserList.this);
 
         userID= Util.getSharedPrefrenceValue(getApplicationContext(), Constant.SP_LOGIN_ID);
+        userType= Util.getSharedPrefrenceValue(getApplicationContext(), Constant.SP_LOGIN_TYPE);
 
         if(userID!=null){
             String userType=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_TYPE);
@@ -197,7 +198,7 @@ public class ForumUserList extends AppCompatActivity implements AdapterView.OnIt
 
         @Override
         protected String doInBackground(String... params) {
-            objForumUserListBL.getSearchUserList(params[0],params[1]);
+            objForumUserListBL.getSearchUserList(params[0],params[1],params[2]);
             return "";
         }
 

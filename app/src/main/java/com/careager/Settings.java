@@ -194,7 +194,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"http://tinyurl.com/careager");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"https://play.google.com/store/apps/details?id=com.car.careager");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }

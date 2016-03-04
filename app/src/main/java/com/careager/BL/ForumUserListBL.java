@@ -63,19 +63,19 @@ public class ForumUserListBL {
 
     /*---------------------*/
 
-    public void getSearchUserList(String user_id,String name){
+    public void getSearchUserList(String user_id,String name,String type){
 
-        String result=callWSSearch(user_id, name);
+        String result=callWSSearch(user_id, name,type);
         validateSearch(result);
 
     }
 
     /* CALL WEB SERVICE */
-    private String callWSSearch(String user_id,String name){
+    private String callWSSearch(String user_id,String name,String type){
 
         //http://ec2-52-76-48-31.ap-southeast-1.compute.amazonaws.com/careager/user_webservices/forum_user_chatlist?user_id=1
-        String URL="user_id="+user_id+"&search="+name;
-        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_USER, URL, Constant.WS_USER_CHAT_SEARCH);
+        String URL="user_id="+user_id+"&term="+name+"&type="+type;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH, URL, Constant.WS_USER_BUSINESS_SEARCH);
         return txtJson;
 
     }

@@ -1,13 +1,19 @@
 package com.careager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -21,12 +27,31 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
     Button btnSignup,btnSignin,btnSkip;
     RadioButton Gender;
 
+    ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_it_work);
 
         initialize();
+
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -56,10 +81,15 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
         btnSignup= (Button) findViewById(R.id.hiw_signup);
         btnSignin= (Button) findViewById(R.id.hiw_signin);
         btnSkip= (Button) findViewById(R.id.hiw_skip);
+        pager= (ViewPager) findViewById(R.id.pager);
 
         btnSignin.setOnClickListener(this);
         btnSignup.setOnClickListener(this);
         btnSkip.setOnClickListener(this);
+
+        DealerPageAdapter adapter=new DealerPageAdapter(getApplicationContext());
+        pager.setAdapter(adapter);
+        pager.setOffscreenPageLimit(adapter.getCount());
     }
 
     @Override
@@ -110,4 +140,58 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
             }
         }, 2000);
     }
+
+
+    private class DealerPageAdapter extends PagerAdapter {
+        Context context;
+        LayoutInflater inflater;
+        ImageView imgPager;
+
+        int images[]={R.drawable.hiw_one,R.drawable.hiw_two,R.drawable.hiw_three,R.drawable.hiw_four,R.drawable.hiw_five,R.drawable.hiw_six,R.drawable.hiw_seven};
+
+        DealerPageAdapter(Context contex) {
+            this.context = contex;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+
+
+            inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View itemView = inflater.inflate(R.layout.fragment_hiwfragment_one, container,
+                    false);
+
+            imgPager= (ImageView) itemView.findViewById(R.id.hiw_image_pager);
+
+            imgPager.setBackgroundResource(images[position]);
+
+
+
+            ((ViewPager) container).addView(itemView);
+
+            return itemView;
+        }
+
+        @Override
+        public int getCount() {
+            return 7;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return (view == object);
+        }
+
+        /*public float getPageWidth(int position)
+        {
+            return .9f;
+        }*/
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+    }
+
 }
