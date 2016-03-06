@@ -10,12 +10,16 @@ import android.widget.TextView;
 import com.careager.Constant.Constant;
 import com.careager.careager.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by appslure on 04-01-2016.
  */
 public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapter.ForumCommentHolder> {
 
     Context mContext;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public ForumCommentAdapter(Context context){
         mContext=context;
@@ -32,7 +36,14 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
     @Override
     public void onBindViewHolder(ForumCommentHolder holder, int position) {
         holder.tvTitle.setText(Constant.forumCommentComment[position]);
-        holder.tvPosted.setText("Posted by "+Constant.forumCommentName[position]+" on "+Constant.forumCommentTimestamp[position]);
+        if(Constant.forumCommentTimestamp[position].trim().length()>0){
+            long timestamp = Long.valueOf(Constant.forumCommentTimestamp[position]); //Example -> in ms
+            Date d = new Date(timestamp*1000);
+           // holder.tvDescription.setText("Posted on: "+dateFormat.format(d));
+            holder.tvPosted.setText("Posted by "+Constant.forumCommentName[position]+" on "+dateFormat.format(d));
+
+        }
+
     }
 
     @Override

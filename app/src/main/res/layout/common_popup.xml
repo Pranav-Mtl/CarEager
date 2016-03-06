@@ -79,6 +79,7 @@
             android:textColor="#fe1119"
             android:gravity="center"
 
+
             />
     </LinearLayout>
 </LinearLayout>

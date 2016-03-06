@@ -287,6 +287,7 @@ public class Constant {
     public static String articleTitle[];
     public static String articleDescription[];
     public static String articleDate[];
+    public static String articleAuthor[];
 
     /* FORUM DETAIL COMMENT LIST*/
 

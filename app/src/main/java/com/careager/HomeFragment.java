@@ -172,7 +172,12 @@ DrawerAdapter drawerAdapter;
         tvServiceLocation.setAdapter(new GooglePlacesAutocompleteAdapter(getActivity(), R.layout.gender_spinner_item));
 
         try {
-            ArrayAdapter<String> adapterSpn = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, Constant.homeCategory);
+            ArrayList listCategory=new ArrayList();
+            listCategory.add("All Businesses");
+            for(int i=0;i<Constant.homeCategory.length;i++){
+                listCategory.add(Constant.homeCategory[i]);
+            }
+            ArrayAdapter<String> adapterSpn = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,listCategory);
             adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerCategory.setAdapter(adapterSpn);
         }catch (NullPointerException e){

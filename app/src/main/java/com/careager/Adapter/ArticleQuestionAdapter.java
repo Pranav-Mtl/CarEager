@@ -47,7 +47,7 @@ public class ArticleQuestionAdapter extends RecyclerView.Adapter<ArticleQuestion
         if(Constant.articleDate[position].trim().length()>0){
             long timestamp = Long.valueOf(Constant.articleDate[position]); //Example -> in ms
             Date d = new Date(timestamp*1000);
-            holder.tvDescription.setText("Posted on: "+dateFormat.format(d));
+            holder.tvDescription.setText("Posted on: "+dateFormat.format(d)+" by "+Constant.articleAuthor[position]);
 
         }
 

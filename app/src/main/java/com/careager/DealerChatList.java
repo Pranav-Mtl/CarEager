@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 
 import com.careager.Adapter.DealerChatListAdapter;
 import com.careager.Adapter.ForumUserListAdapter;
+import com.careager.BL.DealerChatListBL;
 import com.careager.BL.ForumUserListBL;
 import com.careager.Configuration.Util;
 import com.careager.Constant.Constant;
@@ -40,6 +41,8 @@ public class DealerChatList extends AppCompatActivity implements AdapterView.OnI
     AutoCompleteTextView tvUserList;
 
     ForumUserListBL objForumUserListBL;
+
+    DealerChatListBL objDealerChatListBL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,9 @@ public class DealerChatList extends AppCompatActivity implements AdapterView.OnI
         recList.setLayoutManager(llm);
 
         objForumUserListBL=new ForumUserListBL();
+        objDealerChatListBL=new DealerChatListBL();
+
+        tvUserList.setOnItemClickListener(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -186,7 +192,7 @@ public class DealerChatList extends AppCompatActivity implements AdapterView.OnI
 
         @Override
         protected String doInBackground(String... params) {
-            objForumUserListBL.getSearchUserList(params[0],params[1],params[2]);
+            objDealerChatListBL.getSearchUserList(params[0],params[1],params[2]);
             return "";
         }
 

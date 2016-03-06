@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:paddingBottom="10dp"
 
             >
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColor"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             />
 
@@ -75,7 +75,7 @@
             android:background="@drawable/customized_button"
             android:textColor="@color/whiteColor"
             android:textAllCaps="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:textSize="@dimen/popup_button_text_Size"
             android:padding="5dp"
             android:minHeight="@dimen/popup_button_min_height"

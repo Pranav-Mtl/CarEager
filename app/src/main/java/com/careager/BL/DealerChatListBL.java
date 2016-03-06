@@ -59,4 +59,57 @@ public class DealerChatListBL {
         }
 
     }
+
+    public void getSearchUserList(String user_id,String name,String type){
+
+        String result=callWSSearch(user_id, name, type);
+        validateSearch(result);
+
+    }
+
+    /* CALL WEB SERVICE */
+    private String callWSSearch(String user_id,String name,String type){
+
+        //http://ec2-52-76-48-31.ap-southeast-1.compute.amazonaws.com/careager/user_webservices/forum_user_chatlist?user_id=1
+        String URL="id="+user_id+"&term="+name+"&type="+type;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH, URL, Constant.WS_USER_BUSINESS_SEARCH);
+        return txtJson;
+
+    }
+
+    /* PARSE MAIN JSON */
+    private void validateSearch(String result){
+
+        if(!result.equalsIgnoreCase("[]")) {
+            JSONParser jsonP = new JSONParser();
+            try {
+                Object obj = jsonP.parse(result);
+                JSONArray jsonArrayObject = (JSONArray) obj;
+
+                Constant.forumUserIDSearch = new String[jsonArrayObject.size()];
+                Constant.forumUserNameSearch = new String[jsonArrayObject.size()];
+                Constant.forumUserChatSearch = new String[jsonArrayObject.size()];
+                Constant.forumUserDateSearch = new String[jsonArrayObject.size()];
+                Constant.forumUserImageSearch = new String[jsonArrayObject.size()];
+
+                for (int i = 0; i < jsonArrayObject.size(); i++) {
+                    JSONObject jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
+
+                    Constant.forumUserIDSearch[i] = jsonObject.get("showroom_id").toString();
+                    Constant.forumUserNameSearch[i] = jsonObject.get("name").toString();
+                   /* Constant.forumUserChatSearch[i] = jsonObject.get("message").toString();
+                    Constant.forumUserDateSearch[i] = jsonObject.get("timestamp").toString();
+                    Constant.forumUserImageSearch[i] = jsonObject.get("avatar").toString();*/
+
+                }
+
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+        }
+        else
+            Constant.forumUserNameSearch = new String[0];
+
+
+    }
 }

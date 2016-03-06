@@ -28,6 +28,7 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
     RadioButton Gender;
 
     ViewPager pager;
+    ImageView ivOne,ivTwo,ivThree,ivFour,ivFive,ivSix,ivSeven;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,76 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    if((position==0)){
+                        ivOne.setBackgroundResource(R.drawable.hiw_dot_selected);
+                        ivTwo.setBackgroundResource(R.drawable.hiw_dot_default);
+                        ivThree.setBackgroundResource(R.drawable.hiw_dot_default);
+                        ivFour.setBackgroundResource(R.drawable.hiw_dot_default);
+                        ivFive.setBackgroundResource(R.drawable.hiw_dot_default);
+                        ivSix.setBackgroundResource(R.drawable.hiw_dot_default);
+                        ivSeven.setBackgroundResource(R.drawable.hiw_dot_default);
 
+                    }
+                if((position==1)){
+                    ivOne.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivTwo.setBackgroundResource(R.drawable.hiw_dot_selected);
+                    ivThree.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFour.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFive.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSix.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSeven.setBackgroundResource(R.drawable.hiw_dot_default);
+
+                }
+                if((position==2)){
+                    ivOne.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivTwo.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivThree.setBackgroundResource(R.drawable.hiw_dot_selected);
+                    ivFour.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFive.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSix.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSeven.setBackgroundResource(R.drawable.hiw_dot_default);
+
+                }
+                if((position==3)){
+                    ivOne.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivTwo.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivThree.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFour.setBackgroundResource(R.drawable.hiw_dot_selected);
+                    ivFive.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSix.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSeven.setBackgroundResource(R.drawable.hiw_dot_default);
+
+                }
+                if((position==4)){
+                    ivOne.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivTwo.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivThree.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFour.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFive.setBackgroundResource(R.drawable.hiw_dot_selected);
+                    ivSix.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSeven.setBackgroundResource(R.drawable.hiw_dot_default);
+
+                }
+                if((position==5)){
+                    ivOne.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivTwo.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivThree.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFour.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFive.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSix.setBackgroundResource(R.drawable.hiw_dot_selected);
+                    ivSeven.setBackgroundResource(R.drawable.hiw_dot_default);
+
+                }
+                if((position==6)){
+                    ivOne.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivTwo.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivThree.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFour.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivFive.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSix.setBackgroundResource(R.drawable.hiw_dot_default);
+                    ivSeven.setBackgroundResource(R.drawable.hiw_dot_selected);
+
+                }
             }
 
             @Override
@@ -82,6 +152,13 @@ public class HowItWork extends AppCompatActivity implements View.OnClickListener
         btnSignin= (Button) findViewById(R.id.hiw_signin);
         btnSkip= (Button) findViewById(R.id.hiw_skip);
         pager= (ViewPager) findViewById(R.id.pager);
+        ivOne= (ImageView) findViewById(R.id.hit_iv_first);
+        ivTwo= (ImageView) findViewById(R.id.hit_iv_second);
+        ivThree= (ImageView) findViewById(R.id.hit_iv_third);
+        ivFour= (ImageView) findViewById(R.id.hit_iv_fourth);
+        ivFive= (ImageView) findViewById(R.id.hit_iv_fifth);
+        ivSix= (ImageView) findViewById(R.id.hit_iv_six);
+        ivSeven= (ImageView) findViewById(R.id.hit_iv_seven);
 
         btnSignin.setOnClickListener(this);
         btnSignup.setOnClickListener(this);

@@ -45,6 +45,7 @@ public class ArticleQuestionBL {
             Constant.articleTitle=new String[jsonArrayObject.size()];
             Constant.articleDescription=new String[jsonArrayObject.size()];
             Constant.articleDate=new String[jsonArrayObject.size()];
+            Constant.articleAuthor=new String[jsonArrayObject.size()];
 
             for(int i=0;i<jsonArrayObject.size();i++) {
                 jsonObject = (JSONObject) jsonP.parse(jsonArrayObject.get(i).toString());
@@ -53,6 +54,7 @@ public class ArticleQuestionBL {
                 Constant.articleTitle[i] = jsonObject.get("title").toString();
                 Constant.articleDescription[i] = jsonObject.get("description").toString();
                 Constant.articleDate[i] = jsonObject.get("date").toString();
+                Constant.articleAuthor[i] = jsonObject.get("author").toString();
 
             }
 

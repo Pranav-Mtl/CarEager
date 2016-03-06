@@ -74,8 +74,8 @@ public class ForumUserListBL {
     private String callWSSearch(String user_id,String name,String type){
 
         //http://ec2-52-76-48-31.ap-southeast-1.compute.amazonaws.com/careager/user_webservices/forum_user_chatlist?user_id=1
-        String URL="user_id="+user_id+"&term="+name+"&type="+type;
-        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH, URL, Constant.WS_USER_BUSINESS_SEARCH);
+        String URL="user_id="+user_id+"&name="+name+"&type="+type;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_USER, URL, Constant.WS_USER_CHAT_SEARCH);
         return txtJson;
 
     }

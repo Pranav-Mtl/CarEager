@@ -70,7 +70,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
 
     ProgressDialog progressDialog;
 
-    TextView tvName,tvLocation,tvRating,tvOverView,tvRatingCareager;
+    TextView tvName,tvLocation,tvRating,tvOverView,tvRatingCareager,tvCategory;
     RatingBar rbUserRating,rbCareagerRating;
 
     ImageView llTopMain;
@@ -122,6 +122,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
         btnBusinessLogo= (ImageButton) findViewById(R.id.profile_btn_business_logo);
         btnRateDealer= (ImageButton) findViewById(R.id.profile_review_btn);
         ivVerified= (ImageView) findViewById(R.id.dealer_verified);
+        tvCategory= (TextView) findViewById(R.id.dealer_profile_category);
 
         mContainer = (GalleryPagerContainer) findViewById(R.id.pager_container_gallery);
 
@@ -283,6 +284,8 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
                 tvRating.setText("User rating");
                 tvOverView.setText(objDealerProfileBE.getOverview());
                 tvRatingCareager.setText("CarEager rating");
+
+                tvCategory.setText("("+objDealerProfileBE.getCategory()+")");
 
                 rbUserRating.setRating(Float.valueOf(objDealerProfileBE.getRating()));
                 rbUserRating.setIsIndicator(true);
@@ -628,7 +631,7 @@ public class DealerProfile extends AppCompatActivity implements View.OnClickList
         i.setAction(Intent.ACTION_SEND);
         i.setType("image/*");
         i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(path)));
-        i.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"http://tinyurl.com/careager");
+        i.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"https://play.google.com/store/apps/details?id=com.car.careager");
         startActivity(i);
     }
 

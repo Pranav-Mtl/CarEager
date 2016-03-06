@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:background="@drawable/ic_default_cover"
+                android:background="@drawable/local_business"
                 />
             <LinearLayout
                 android:id="@+id/ll_business_dp"

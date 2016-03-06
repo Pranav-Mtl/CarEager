@@ -104,8 +104,8 @@ public class ForumQuestionDetailBL {
     private String callWSComment(String userID,String comment,String articleID){
 
         //http://careager.com/careager_webservices/update_coment?name=san&email=san@jld.com&comment=hello%20world&article_id=6
-        String URL="&user_id="+userID+"&comment="+comment+"&question_id="+articleID;
-        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH_CAREAGER, URL, Constant.WS_FORUM_COMMENT);
+        String URL="id="+userID+"&comment="+comment+"&question_id="+articleID;
+        String txtJson= RestFullWS.serverRequest(Constant.WS_PATH, URL, Constant.WS_FORUM_COMMENT);
         return txtJson;
 
     }

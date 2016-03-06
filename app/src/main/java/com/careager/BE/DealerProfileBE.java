@@ -21,6 +21,15 @@ public class DealerProfileBE implements Serializable {
     private String rating;
     private String cover;
     private String approved;
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getApproved() {
         return approved;

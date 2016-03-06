@@ -3,6 +3,7 @@ package com.careager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -19,9 +21,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.careager.Adapter.SearchServiceAdapter;
 import com.careager.Configuration.Util;
+import com.careager.Constant.Constant;
 import com.careager.careager.R;
 
 public class SearchService extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class SearchService extends AppCompatActivity {
 
     String location,category;
     SearchServiceAdapter objSearchServiceAdapter;
+
+    String userID;
 
     int xx,yy;
 
@@ -60,6 +66,8 @@ public class SearchService extends AppCompatActivity {
         final LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
+
+        userID=Util.getSharedPrefrenceValue(getApplicationContext(), Constant.SP_LOGIN_ID);
 
         popupSize();
         progressDialog=new ProgressDialog(SearchService.this);
@@ -281,19 +289,19 @@ public class SearchService extends AppCompatActivity {
         // x -->  X-Cordinate
         // y -->  Y-Cordinate
 
-        final TextView tvMsg,tvTitle;
+        final TextView tvMsg,tvTitle,tvText,tvBottomSmall;
         Button btnClosePopup,btnsave;
 
         final Dialog dialog  = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setContentView(R.layout.common_popup);
+        dialog.setContentView(R.layout.popup_home_screen);
         dialog.setCanceledOnTouchOutside(true);
 
         WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
         wmlp.gravity = Gravity.CENTER;
-        wmlp.width=xx;
-        wmlp.height=yy;
+        wmlp.width=xx+20;
+        wmlp.height=yy+120;
 
 
 
@@ -301,25 +309,49 @@ public class SearchService extends AppCompatActivity {
         btnClosePopup = (Button) dialog.findViewById(R.id.popup_cancel);
         btnsave= (Button) dialog.findViewById(R.id.popup_add);
         tvMsg= (TextView) dialog.findViewById(R.id.popup_message);
+        tvText= (TextView) dialog.findViewById(R.id.popup_msg);
         tvTitle= (TextView) dialog.findViewById(R.id.popup_title);
+        tvBottomSmall= (TextView) dialog.findViewById(R.id.popup_msg_small);
 
         tvTitle.setText(getResources().getString(R.string._no_result_title));
-        tvMsg.setText(getResources().getString(R.string._no_result_message));
-        btnClosePopup.setText(getResources().getString(R.string._no_result_cancel));
+        String str="SORRY, AUTO BUSINESSES ARE NOT REGISTERED IN YOUR LOCALITY ";
+        tvMsg.setText(str);
+        tvText.setText("If you want to add a local car business on CarEager, visit -");
+        btnClosePopup.setText("Add Local Business");
         btnsave.setText(getResources().getString(R.string._no_result_save));
 
-        btnClosePopup.setVisibility(View.GONE);
+        String textBefore="If you are owner of a car business, visit ";
+        String textAfter=" page to add & manage your business on CarEager.";
+        String text = "<font color=#ff0000> <u> "+"BUSINESS SIGNUP"+" </u></font>";
 
+        tvBottomSmall.setText(Html.fromHtml(textBefore + text + textAfter));
+        tvBottomSmall.setPadding(0,10,0,0);
+
+        //tvBottomSmall.setText("If you are owner of a car business, visit “BUSINESS SIGNUP” ");
 
         btnClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //Toast.makeText(SellerQuestionExpandable.this,edittext.getText().toString(),Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), AddBusinessMap.class));
                 dialog.dismiss();
                 //finish();
             }
         });
+
+        tvBottomSmall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userID == null) {
+                    startActivity(new Intent(getApplicationContext(),HowItWork.class));
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"You are already logged In.",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
         btnsave.setOnClickListener(new View.OnClickListener() {
                                        @Override

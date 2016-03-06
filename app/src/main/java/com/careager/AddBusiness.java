@@ -1043,7 +1043,7 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
                         Log.d("Response-->",response+"");
                         startActivity(new Intent(getApplicationContext(),HomeScreen.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-                        Toast.makeText(getApplicationContext(),"Details Uploaded Successfully.Business will be live after verification",
+                        Toast.makeText(getApplicationContext(),"Details Uploaded Successfully. Business will be live after verification",
                                 Toast.LENGTH_LONG).show();
                     }
 

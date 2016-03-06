@@ -97,6 +97,9 @@ public class ForumQuestionDetail extends AppCompatActivity {
 
         progressDialog=new ProgressDialog(ForumQuestionDetail.this);
 
+        userID=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_ID);
+        userType=Util.getSharedPrefrenceValue(getApplicationContext(),Constant.SP_LOGIN_TYPE);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -185,7 +188,7 @@ public class ForumQuestionDetail extends AppCompatActivity {
         protected void onPostExecute(String s) {
             try{
                 if(Constant.WS_RESPONSE_SUCCESS.equalsIgnoreCase(s)){
-                    startActivity(new Intent(getApplicationContext(),ArticleQuestionDetail.class).putExtra("ID",ID));
+                    startActivity(new Intent(getApplicationContext(),ForumQuestionDetail.class).putExtra("ID",ID));
                     finish();
                 }
                 else

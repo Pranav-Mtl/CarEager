@@ -39,49 +39,49 @@
                    android:id="@+id/hit_iv_first"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_selected"
                    />
                <ImageView
                    android:id="@+id/hit_iv_second"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_default"
                    />
                <ImageView
                    android:id="@+id/hit_iv_third"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_default"
                    />
                <ImageView
                    android:id="@+id/hit_iv_fourth"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_default"
                    />
                <ImageView
                    android:id="@+id/hit_iv_fifth"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_default"
                    />
                <ImageView
                    android:id="@+id/hit_iv_six"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_default"
                    />
                <ImageView
                    android:id="@+id/hit_iv_seven"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:background="@drawable/radio_default"
+                   android:background="@drawable/hiw_dot_default"
                    />
            </LinearLayout>
            <RadioGroup
