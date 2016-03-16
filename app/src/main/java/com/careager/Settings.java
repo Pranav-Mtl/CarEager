@@ -189,12 +189,13 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        final String text="I use the CarEager App and I think that you might like it. It’s very useful as you can interact with any car business in India! Try it for free on Android: ";
         btnAppShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "#GetAPP"+"\n"+"https://play.google.com/store/apps/details?id=com.car.careager");
+                sendIntent.putExtra(Intent.EXTRA_TEXT,text+"\n"+"https://play.google.com/store/apps/details?id=com.car.careager");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }

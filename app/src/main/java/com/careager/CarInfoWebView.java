@@ -124,4 +124,23 @@ public class CarInfoWebView extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        webView.stopLoading();
+        webView.clearHistory();
+        webView.clearView();
+        webView.clearCache(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        webView.stopLoading();
+        webView.clearHistory();
+        webView.clearView();
+    }
 }

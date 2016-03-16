@@ -100,9 +100,9 @@ public class ForumUserListBL {
 
                     Constant.forumUserIDSearch[i] = jsonObject.get("user_id").toString();
                     Constant.forumUserNameSearch[i] = jsonObject.get("name").toString();
-                    Constant.forumUserChatSearch[i] = jsonObject.get("message").toString();
+                    /*Constant.forumUserChatSearch[i] = jsonObject.get("message").toString();
                     Constant.forumUserDateSearch[i] = jsonObject.get("timestamp").toString();
-                    Constant.forumUserImageSearch[i] = jsonObject.get("avatar").toString();
+                    Constant.forumUserImageSearch[i] = jsonObject.get("avatar").toString();*/
 
                 }
 

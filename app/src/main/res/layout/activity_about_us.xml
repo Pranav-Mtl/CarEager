@@ -29,11 +29,16 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/toolbar"
+
+        android:gravity="center_horizontal"
         android:padding="15dp"
         >
 
@@ -129,4 +134,6 @@
    </RelativeLayout>
 
     </LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>

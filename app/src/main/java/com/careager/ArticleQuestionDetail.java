@@ -186,7 +186,7 @@ public class ArticleQuestionDetail extends AppCompatActivity {
                         .error(R.drawable.ic_default_loading)
                         .into(ivImage);
 
-                tvPosted.setText("Posted on: "+objArticleQuestionDetailBE.getTimestamp());
+                tvPosted.setText("Posted on "+objArticleQuestionDetailBE.getTimestamp()+" by "+objArticleQuestionDetailBE.getAuthor());
 
                 objArticleCommentAdapter=new ArticleCommentAdapter(getApplicationContext());
                 recList.setAdapter(objArticleCommentAdapter);

@@ -47,26 +47,20 @@ public class AddBusinessMap extends AppCompatActivity implements View.OnClickLis
 
     GoogleMap googleMap;
     MarkerOptions marker;
-    AutoCompleteTextView tvAdddress;
 
-    Location objLocation;
+
+
 
     Button btnCurrentLocation,btnNext;
 
+    Location objLocation;
     Double lat = 28.6100, longt = 77.2300;
 
     Marker markers;
 
     boolean mark=false;
 
-    private static final String LOG_TAG = "Careager";
 
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String OUT_JSON = "/json";
-
-    //------------ make your specific key ------------
-    private static final String API_KEY = "AIzaSyBugME8AtB66ogVSb0kZShmnlkSLwGusC4";
 
 
     @Override
@@ -91,9 +85,6 @@ public class AddBusinessMap extends AppCompatActivity implements View.OnClickLis
                 lat = arg0.getPosition().latitude;
                 longt = arg0.getPosition().longitude;
 
-                String add = getCurrentAddress(lat, longt);
-                Log.d("Address", add);
-                tvAdddress.setText(add);
 
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(arg0.getPosition()));
             }
@@ -110,13 +101,12 @@ public class AddBusinessMap extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initialize(){
-        tvAdddress = (AutoCompleteTextView) findViewById(R.id.business_address);
+
         btnCurrentLocation= (Button) findViewById(R.id.business_currentlocation);
         btnNext= (Button) findViewById(R.id.business_next);
         googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap)).getMap();
 
-        tvAdddress.setAdapter(new GooglePlacesAutocompleteAdapter(getApplicationContext(), R.layout.gender_spinner_item));
-        tvAdddress.setOnItemClickListener(this);
+
 
         btnNext.setOnClickListener(this);
         btnCurrentLocation.setOnClickListener(this);
@@ -165,9 +155,9 @@ public class AddBusinessMap extends AppCompatActivity implements View.OnClickLis
                             if(mark)
                                 markers.remove();
                             showMarker(lat, longt);
-                            String add = getCurrentAddress(lat, longt);
-                            Log.d("Address", add);
-                            tvAdddress.setText(add);
+
+
+
 
                         } else
                             Toast.makeText(getApplicationContext(), "Problem with location detection. Try again.", Toast.LENGTH_SHORT).show();
@@ -181,15 +171,11 @@ public class AddBusinessMap extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.business_next:
-                if(tvAdddress.getText().toString().trim().length()>0) {
+
                     Intent intent = new Intent(getApplicationContext(), AddBusiness.class);
-                    intent.putExtra("Address", tvAdddress.getText().toString());
                     intent.putExtra("Lat", lat + "");
                     intent.putExtra("Long", longt + "");
                     startActivityForResult(intent, 1);
-                }
-                else
-                  tvAdddress.setError("Select Location");
                 break;
 
         }
@@ -242,117 +228,7 @@ public class AddBusinessMap extends AppCompatActivity implements View.OnClickLis
 
 
 
-    public static ArrayList<String> autocomplete(String input) {
-        ArrayList<String> resultList = null;
 
-        HttpURLConnection conn = null;
-        StringBuilder jsonResults = new StringBuilder();
-        try {
-            StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
-            sb.append("?key=" + API_KEY);
-            sb.append("&types=geocode");
-            sb.append("&sensor=false");
-            sb.append("&language=en");
-            sb.append("components=country:IN");
-            sb.append("&input=" + URLEncoder.encode(input, "utf8"));
-
-            URL url = new URL(sb.toString());
-
-            System.out.println("URL: " + url);
-            conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
-            // Load the results into a StringBuilder
-            int read;
-            char[] buff = new char[1024];
-            while ((read = in.read(buff)) != -1) {
-                jsonResults.append(buff, 0, read);
-
-            }
-        } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error processing Places API URL", e);
-            return resultList;
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Error connecting to Places API", e);
-            return resultList;
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "mmmmmmmm", e);
-            return resultList;
-        } finally {
-            if (conn != null) {
-                conn.disconnect();
-            }
-        }
-
-        try {
-
-            // Create a JSON object hierarchy from the results
-            org.json.JSONObject jsonObj = new org.json.JSONObject(jsonResults.toString());
-            org.json.JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
-
-            // Extract the Place descriptions from the results
-            resultList = new ArrayList<String>(predsJsonArray.length());
-            for (int i = 0; i < predsJsonArray.length(); i++) {
-                System.out.println(predsJsonArray.getJSONObject(i).getString("description"));
-                System.out.println("============================================================");
-                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
-            }
-        } catch (JSONException e) {
-            Log.e(LOG_TAG, "Cannot process JSON results", e);
-        }
-
-        return resultList;
-    }
-
-
-    class GooglePlacesAutocompleteAdapter extends ArrayAdapter<String> implements Filterable {
-        private ArrayList<String> resultList;
-
-        public GooglePlacesAutocompleteAdapter(Context context, int textViewResourceId) {
-            super(context, textViewResourceId);
-        }
-
-        @Override
-        public int getCount() {
-            return resultList.size();
-        }
-
-        @Override
-        public String getItem(int index) {
-            return resultList.get(index);
-        }
-
-        @Override
-        public Filter getFilter() {
-            Filter filter = new Filter() {
-                @Override
-                protected FilterResults performFiltering(CharSequence constraint) {
-                    android.widget.Filter.FilterResults filterResults = new Filter.FilterResults();
-                    if (constraint != null) {
-                        // Retrieve the autocomplete results.
-                        resultList = autocomplete(constraint.toString());
-
-                        System.out.println(resultList);
-
-                        // Assign the data to the FilterResults
-                        filterResults.values = resultList;
-                        filterResults.count = resultList.size();
-                    }
-                    return filterResults;
-                }
-
-                @Override
-                protected void publishResults(CharSequence constraint, android.widget.Filter.FilterResults results) {
-                    if (results != null && results.count > 0) {
-                        notifyDataSetChanged();
-                    } else {
-                        notifyDataSetInvalidated();
-                    }
-                }
-            };
-            return filter;
-        }
-    }
 
     private String getCurrentAddress(Double latitude, Double longitude) {
         String addressess="";

@@ -66,6 +66,7 @@ public class ArticleQuestionDetailBL {
             objArticleQuestionDetailBE.setImage(jsonObject.get("image").toString());
             objArticleQuestionDetailBE.setTimestamp(jsonObject.get("date").toString());
             objArticleQuestionDetailBE.setDescription(jsonObject.get("description").toString());
+            objArticleQuestionDetailBE.setAuthor(jsonObject.get("author").toString());
 
         } catch (Exception e) {
             e.getLocalizedMessage();

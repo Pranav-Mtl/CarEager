@@ -126,8 +126,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             String address = addresses.get(0).getAddressLine(1); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
             String city = addresses.get(0).getLocality();
             String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
 
-            addressComplete=address+","+city;
+            addressComplete=city+","+state+","+country;
             //etLocation.setText(address+","+city);
 
         }

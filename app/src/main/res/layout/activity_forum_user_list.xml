@@ -25,9 +25,10 @@
 
     </android.support.v7.widget.Toolbar>
     <LinearLayout
+        android:id="@+id/llMain"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
         <TextView
@@ -47,10 +48,12 @@
             android:text="(Use 'Business Chat' to talk with businesses)"
             />
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/route_search_bg"
             >
@@ -76,14 +79,14 @@
                 android:background="@drawable/ic_search_black"
                 />
         </RelativeLayout>
+    </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/forum_user_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"
-
+            android:layout_below="@id/llMain"
             />
 
-    </LinearLayout>
+
 </RelativeLayout>

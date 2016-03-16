@@ -182,7 +182,16 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 ></Spinner>
-
+            <AutoCompleteTextView
+                android:id="@+id/business_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Address"
+                android:imeOptions="actionNext"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
             <Spinner
                 android:id="@+id/business_state_list"
                 android:layout_width="match_parent"

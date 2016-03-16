@@ -207,7 +207,7 @@ public class ForumUserList extends AppCompatActivity implements AdapterView.OnIt
             try{
             if(Constant.forumUserNameSearch!=null) {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, Constant.forumUserNameSearch);
-                adapter.setDropDownViewResource(R.layout.spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 tvUserList.setAdapter(adapter);
             }}catch (NullPointerException e){
                 e.printStackTrace();

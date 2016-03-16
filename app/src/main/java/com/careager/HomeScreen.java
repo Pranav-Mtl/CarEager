@@ -115,14 +115,21 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                         }
                         else if (position == 5) {
                             startActivity(new Intent(getApplicationContext(), AboutUs.class));
-                        }
-                        else if (position == 6) {
-                            startActivity(new Intent(getApplicationContext(), DealerChatList.class));
+                        }else if (position == 6) {
+                            final String text="I use the CarEager App and I think that you might like it. It’s very useful as you can interact with any car business in India! Try it for free on Android: ";
+                                    Intent sendIntent = new Intent();
+                                    sendIntent.setAction(Intent.ACTION_SEND);
+                                    sendIntent.putExtra(Intent.EXTRA_TEXT, text + "\n" + "https://play.google.com/store/apps/details?id=com.car.careager");
+                                    sendIntent.setType("text/plain");
+                                    startActivity(sendIntent);
                         }
                         else if (position == 7) {
-                            startActivity(new Intent(getApplicationContext(), Settings.class));
+                            startActivity(new Intent(getApplicationContext(), DealerChatList.class));
                         }
                         else if (position == 8) {
+                            startActivity(new Intent(getApplicationContext(), Settings.class));
+                        }
+                        else if (position == 9) {
                             if(Util.isInternetConnection(HomeScreen.this))
                            new Logout().execute(userID,userType);
                         }

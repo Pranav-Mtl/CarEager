@@ -5,8 +5,15 @@ package com.careager.BE;
  */
 public class ArticleQuestionDetailBE {
 
-    private String title,description,name,timestamp,image,baseURL;
+    private String title,description,name,timestamp,image,baseURL,author;
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getImage() {
         return image;

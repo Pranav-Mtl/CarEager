@@ -242,7 +242,7 @@ public class LatestOffers extends AppCompatActivity {
             rlMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", Constant.showroomOfferID[position]));
+                    startActivity(new Intent(getApplicationContext(), DealerProfile.class).putExtra("ID", Constant.showroomID[position]));
                 }
             });
 
