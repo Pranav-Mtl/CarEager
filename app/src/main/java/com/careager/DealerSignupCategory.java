@@ -42,7 +42,7 @@ public class DealerSignupCategory extends AppCompatActivity implements View.OnCl
 
     List listCategory=new ArrayList();
 
-    String lat,longt,address;
+    String lat,longt;
 
     Intent intent;
 
@@ -103,11 +103,11 @@ public class DealerSignupCategory extends AppCompatActivity implements View.OnCl
         intent=getIntent();
         lat=intent.getStringExtra("Lat");
         longt=intent.getStringExtra("Long");
-        address=intent.getStringExtra("Address");
+
 
         objDealerSignUpBE.setLatitude(lat);
         objDealerSignUpBE.setLongitude(longt);
-        objDealerSignUpBE.setLocation(address);
+
 
 
     }

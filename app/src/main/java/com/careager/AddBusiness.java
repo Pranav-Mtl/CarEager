@@ -223,9 +223,9 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
         spnCompany= (Spinner) findViewById(R.id.business_company_list);
         spnStates= (Spinner) findViewById(R.id.business_state_list);
 
-        tvAdddress.setAdapter(new GooglePlacesAutocompleteAdapter(getApplicationContext(), R.layout.gender_spinner_item));
+        /*tvAdddress.setAdapter(new GooglePlacesAutocompleteAdapter(getApplicationContext(), R.layout.gender_spinner_item));
         tvAdddress.setOnItemClickListener(this);
-
+*/
         intent=getIntent();
         lat=intent.getStringExtra("Lat");
         longt=intent.getStringExtra("Long");

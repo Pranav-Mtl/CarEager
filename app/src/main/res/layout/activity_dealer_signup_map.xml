@@ -50,28 +50,7 @@
             android:textColorHint="@color/whiteColor"
             />
 
-        <TextView
-            android:id="@+id/address_or"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="OR"
-            android:layout_centerInParent="true"
-            android:textStyle="bold"
-            android:layout_below="@id/business_currentlocation"
-            />
 
-        <AutoCompleteTextView
-            android:id="@+id/business_address"
-            android:layout_below="@id/address_or"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Type Address"
-            android:imeOptions="actionNext"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            />
 
 
 

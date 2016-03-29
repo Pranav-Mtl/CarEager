@@ -149,6 +149,19 @@
                 android:textStyle="bold"
                 />
         </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/business_address"
+            android:layout_below="@id/address_or"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Complete Address"
+            android:imeOptions="actionNext"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
         <Spinner
             android:id="@+id/signup_states"
             android:layout_width="match_parent"

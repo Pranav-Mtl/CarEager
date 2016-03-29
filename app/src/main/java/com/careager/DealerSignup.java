@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -43,7 +44,7 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     Button btnDone;
     EditText etName,etEmail,etContact,etPassword,etShop,etArea,etCity,etState,etZip;
-    String strName,strEmail,strContact,strPassword,strCompany,strArea,strState;
+    String strName,strEmail,strContact,strPassword,strCompany,strArea,strState,strAddress;
 
     Spinner spnCompanyName,spnStates;
 
@@ -61,8 +62,18 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
     GoogleCloudMessaging gcmObj;
 
     Context applicationContext;
+    AutoCompleteTextView tvAdddress;
     String gcmID;
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+
+    private static final String LOG_TAG = "Careager";
+
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+    private static final String OUT_JSON = "/json";
+
+    //------------ make your specific key ------------
+    private static final String API_KEY = "AIzaSyBugME8AtB66ogVSb0kZShmnlkSLwGusC4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +106,7 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
     private void initialize(){
 
         btnDone= (Button) findViewById(R.id.btnDealerDone);
-
+        tvAdddress= (AutoCompleteTextView) findViewById(R.id.business_address);
         etName= (EditText) findViewById(R.id.signup_name);
         etEmail= (EditText) findViewById(R.id.signup_email);
         etContact= (EditText) findViewById(R.id.signup_mobile);
@@ -158,6 +169,7 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
         //strArea=etArea.getText().toString();
         strState=spnStates.getSelectedItem().toString();
         strCompany=spnCompanyName.getSelectedItem().toString();
+        strAddress=tvAdddress.getText().toString();
 
 
         if(strName.trim().length()==0){
@@ -181,6 +193,11 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
 
         if(strPassword.trim().length()==0){
             etPassword.setError("required");
+            flag=false;
+        }
+
+        if(strAddress.trim().length()==0){
+            tvAdddress.setError("required");
             flag=false;
         }
 
@@ -211,7 +228,7 @@ public class DealerSignup extends AppCompatActivity implements View.OnClickListe
                     objDealerSignUpBE.setDealerCompany(strCompany);
                     objDealerSignUpBE.setGcmId(gcmID);
                     objDealerSignUpBE.setDeviceId(deviceId);
-
+                    objDealerSignUpBE.setLocation(strAddress);
 
 
                     Util.hideSoftKeyboard(DealerSignup.this);

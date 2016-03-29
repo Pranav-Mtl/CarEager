@@ -47,7 +47,7 @@ public class DealerSignupMap extends AppCompatActivity implements View.OnClickLi
 
     GoogleMap googleMap;
     MarkerOptions marker;
-    AutoCompleteTextView tvAdddress;
+
 
     Location objLocation;
 
@@ -93,7 +93,7 @@ public class DealerSignupMap extends AppCompatActivity implements View.OnClickLi
 
                 String add = getCurrentAddress(lat, longt);
                 Log.d("Address", add);
-                tvAdddress.setText(add);
+
 
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(arg0.getPosition()));
             }
@@ -109,14 +109,14 @@ public class DealerSignupMap extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initialize() {
-        tvAdddress = (AutoCompleteTextView) findViewById(R.id.business_address);
+
         btnCurrentLocation = (Button) findViewById(R.id.business_currentlocation);
         btnNext = (Button) findViewById(R.id.business_next);
         googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap)).getMap();
 
-        tvAdddress.setAdapter(new GooglePlacesAutocompleteAdapter(getApplicationContext(), R.layout.gender_spinner_item));
+        /*tvAdddress.setAdapter(new GooglePlacesAutocompleteAdapter(getApplicationContext(), R.layout.gender_spinner_item));
         tvAdddress.setOnItemClickListener(this);
-
+*/
         btnNext.setOnClickListener(this);
         btnCurrentLocation.setOnClickListener(this);
 
@@ -166,7 +166,7 @@ public class DealerSignupMap extends AppCompatActivity implements View.OnClickLi
                             showMarker(lat, longt);
                             String add = getCurrentAddress(lat, longt);
                             Log.d("Address", add);
-                            tvAdddress.setText(add);
+                            //tvAdddress.setText(add);
 
                         } else
                             Toast.makeText(getApplicationContext(), "Problem with location detection. Try again.", Toast.LENGTH_SHORT).show();
@@ -180,15 +180,12 @@ public class DealerSignupMap extends AppCompatActivity implements View.OnClickLi
 
                 break;
             case R.id.business_next:
-                if(tvAdddress.getText().toString().trim().length()>0) {
+
                     Intent intent = new Intent(getApplicationContext(), DealerSignupCategory.class);
-                    intent.putExtra("Address", tvAdddress.getText().toString());
                     intent.putExtra("Lat", lat + "");
                     intent.putExtra("Long", longt + "");
                     startActivity(intent);
-                }
-                else
-                tvAdddress.setError("Select Location");
+
                 break;
 
         }
